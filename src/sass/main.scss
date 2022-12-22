@@ -5,11 +5,17 @@
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
+  margin: 2rem auto;
   min-width: 320px;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #535bf2;
-  overflow:hidden;
+}
+
+#game {
+  width: 80%;
+  border-radius: 4px;
+  outline: 5px solid white !important;
 }
