@@ -12,9 +12,11 @@ kaboom({
 });
 
 const PLAYER_SPEED = 320;
+let contact = true;
 
 import { loadResources } from "./loadResources";
 import { LEVEL } from "./levels";
+
 
 loadResources();
 
@@ -28,14 +30,16 @@ scene("main", () => {
     gravity(2400);
 
     let tranger = add([
-        sprite("tranger"),
+        sprite("tranger", { anim: "idle" }),
         layer("game"),
         pos(0, 0),
         body(),
-        area({ width: 30 }),
+        area({ width: 1, offset: vec2(35, 0), }),
+        state("idle", ["jump", "run"], {
+            "jump": "idle",
+        })
     ])
     console.log(tranger);
-    tranger.play("idle");
     playerMovement(tranger);
 
     add([
@@ -66,6 +70,7 @@ scene("main", () => {
             "floor",
             pos(0, height() - 180),
             origin("botleft"),
+            "floor"
         ],
     }
 
@@ -78,9 +83,7 @@ go("main");
 
 function playerMovement(player) {
 
-    player.play("idle");
-
-    onKeyPress("down", () => {
+    onKeyDown("down", () => {
         player.play("die");
     })
 
@@ -91,21 +94,29 @@ function playerMovement(player) {
     onKeyDown("left", () => {
         player.flipX(true);
         player.move(-PLAYER_SPEED, 0);
-        console.log(player.curAnim());
+        // console.log(player.curAnim(), player.flipped);
     })
 
     onKeyDown("right", () => {
         player.flipX(false);
         player.move(PLAYER_SPEED, 0);
-        console.log(player.curAnim());
-
+        // console.log(player.curAnim(), player.flipped);
     })
 
     onKeyPress("space", () => {
-        if (!player.isGrounded()) return;
+        // if (!player.isGrounded()) return;
 
         player.jump();
-        player.play("jump");
+        player.play("jump", {
+            onEnd: () => {
+                player.enterState("jump", "run");
+                player.play("idle");
+                console.log(player.curAnim());
+            },
+        });
+        // player.onStateTransition("jump", "idle", () => {
+        //     player.play("idle");
+        // })
     });
 
     player.onUpdate(() => {
@@ -122,4 +133,16 @@ function playerMovement(player) {
             player.play("idle")
         }
     });
+
+    // onKeyRelease("space", () => {
+    //     if (isKeyDown("left") || isKeyDown("right")) {
+    //         player.play("run");
+    //     }
+
+    //     player.onCollide("floor", () => {
+    //         if (!isKeyDown("left") && !isKeyDown("right")) {
+    //             player.play("idle");
+    //         }
+    //     });
+    // });
 }
