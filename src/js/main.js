@@ -12,7 +12,6 @@ kaboom({
 });
 
 const PLAYER_SPEED = 320;
-let contact = true;
 
 import { loadResources } from "./loadResources";
 import { LEVEL } from "./levels";
@@ -35,9 +34,6 @@ scene("main", () => {
         pos(0, 0),
         body(),
         area({ width: 1, offset: vec2(35, 0), }),
-        state("idle", ["jump", "run"], {
-            "jump": "idle",
-        })
     ])
     console.log(tranger);
     playerMovement(tranger);
@@ -78,6 +74,7 @@ scene("main", () => {
 
 });
 
+
 go("main");
 
 
@@ -94,34 +91,19 @@ function playerMovement(player) {
     onKeyDown("left", () => {
         player.flipX(true);
         player.move(-PLAYER_SPEED, 0);
-        // console.log(player.curAnim(), player.flipped);
     })
 
     onKeyDown("right", () => {
         player.flipX(false);
         player.move(PLAYER_SPEED, 0);
-        // console.log(player.curAnim(), player.flipped);
     })
 
     onKeyPress("space", () => {
-        // if (!player.isGrounded()) return;
+        if (!player.isGrounded()) return;
 
+        player.play("jump");
         player.jump();
-        player.play("jump", {
-            onEnd: () => {
-                player.enterState("jump", "run");
-                player.play("idle");
-                console.log(player.curAnim());
-            },
-        });
-        // player.onStateTransition("jump", "idle", () => {
-        //     player.play("idle");
-        // })
     });
-
-    player.onUpdate(() => {
-        camPos(player.pos)
-    })
 
     onKeyRelease(['left', 'right', 'down', 'up'], () => {
         if (
@@ -134,15 +116,19 @@ function playerMovement(player) {
         }
     });
 
-    // onKeyRelease("space", () => {
-    //     if (isKeyDown("left") || isKeyDown("right")) {
-    //         player.play("run");
-    //     }
+    player.onUpdate(() => {
+        camPos(player.pos);
+    });
 
-    //     player.onCollide("floor", () => {
-    //         if (!isKeyDown("left") && !isKeyDown("right")) {
-    //             player.play("idle");
-    //         }
-    //     });
-    // });
+    player.onAnimEnd("jump", () => {
+        if (player.isGrounded()) {
+            if (isKeyDown("right") || isKeyDown("left")) {
+                player.play("run");
+            }
+            else {
+                player.play("idle");
+            }
+        };
+    });
+
 }
