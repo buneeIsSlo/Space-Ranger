@@ -1,5 +1,7 @@
 export const loadResources = () => {
-    loadSprite("background", "../assets/sprites/pinkBack.png");
+    loadSprite("background", "../assets/sprites/parallax-space-stars.png");
+    loadSprite("fullbg", "../assets/sprites/parallax-space-backgound.png");
+    loadSprite("cori", "../assets/sprites/pillar.png");
 
     loadSprite("tranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,
@@ -19,7 +21,7 @@ export const loadResources = () => {
             jump: {
                 from: 15,
                 to: 20,
-                speed: 8,
+                speed: 11,
             },
             die: {
                 from: 21,
