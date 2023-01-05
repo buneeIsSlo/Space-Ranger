@@ -2,6 +2,11 @@ export const loadResources = () => {
     loadSprite("background", "../assets/sprites/parallax-space-stars.png");
     loadSprite("fullbg", "../assets/sprites/parallax-space-backgound.png");
     loadSprite("cori", "../assets/sprites/pillar.png");
+    loadSprite("plain", "../assets/sprites/plain.png");
+    loadSprite("pass", "../assets/sprites/pass.png");
+    loadSprite("hole", "../assets/sprites/hole.png");
+    loadSprite("shutter", "../assets/sprites/shutter.png");
+    loadSprite("exit", "../assets/sprites/exit.png");
 
     loadSprite("tranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,

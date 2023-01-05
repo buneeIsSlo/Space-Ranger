@@ -63,9 +63,9 @@ scene("main", () => {
         fixed(true),
     ])
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 8; i++) {
         const back = add([
-            sprite("cori", { height: height() }),
+            sprite("exit", { height: height() }),
             layer("tile"),
         ]);
 
@@ -77,8 +77,8 @@ scene("main", () => {
             pos((i * w), height() - 20),
             area(),
             solid(),
-            outline(2, BLUE),
-            // opacity(0),
+            // outline(2, BLUE),
+            opacity(0),
         ])
     }
 
