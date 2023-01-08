@@ -13,7 +13,7 @@ kaboom({
 const PLAYER_SPEED = 320;
 
 import { loadResources } from "./loadResources";
-import { LEVEL } from "./levels";
+import { LEVEL, addTiles } from "./levels";
 
 
 loadResources();
@@ -63,24 +63,24 @@ scene("main", () => {
         fixed(true),
     ])
 
-    for (let i = 0; i < 8; i++) {
-        const back = add([
-            sprite("exit", { height: height() }),
-            layer("tile"),
-        ]);
+    // for (let i = 0; i < 8; i++) {
+    //     const back = add([
+    //         sprite("exit", { height: height() }),
+    //         layer("tile"),
+    //     ]);
 
-        const w = back.width;
-        back.pos = vec2((i * w), 0);
+    //     const w = back.width;
+    //     back.pos = vec2((i * w), 0);
 
-        add([
-            rect(w, 40,),
-            pos((i * w), height() - 20),
-            area(),
-            solid(),
-            // outline(2, BLUE),
-            opacity(0),
-        ])
-    }
+    //     add([
+    //         rect(w, 40,),
+    //         pos((i * w), height() - 20),
+    //         area(),
+    //         solid(),
+    //         // outline(2, BLUE),
+    //         opacity(0),
+    //     ])
+    // }
 
     const lvlConf = {
         width: 16,
@@ -101,6 +101,45 @@ scene("main", () => {
 
     addLevel(LEVEL, lvlConf);
 
+
+    addTiles([
+        {
+            name: "plain",
+            floor: {
+                height: 40,
+            }
+        },
+        {
+            name: "plain",
+            floor: {
+                height: 40,
+            }
+        },
+        {
+            name: "shutter",
+            floor: {
+                height: 40,
+            }
+        },
+        {
+            name: "plain",
+            floor: {
+                height: 40,
+            }
+        },
+        {
+            name: "plain",
+            floor: {
+                height: 40,
+            }
+        },
+        {
+            name: "shutter",
+            floor: {
+                height: 40,
+            }
+        }
+    ])
 });
 
 
@@ -180,4 +219,8 @@ function playerMovement(player) {
         })
     });
 
+}
+
+const floor = {
+    floor: true,
 }
