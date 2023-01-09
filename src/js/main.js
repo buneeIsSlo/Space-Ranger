@@ -104,40 +104,73 @@ scene("main", () => {
 
     addTiles([
         {
-            name: "plain",
-            floor: {
-                height: 40,
+            name: "plainTile",
+            onAdded: (tile) => {
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                const w = tile.width;
+                const h = tile.height;
+
+                const block = add([
+                    rect(40, 40),
+                    pos(w / 2, (h / 2) + 40),
+                    area(),
+                    solid(),
+                    color(0, 255, 0),
+                    body(),
+                    origin("center"),
+                ]);
             }
         },
         {
-            name: "plain",
-            floor: {
-                height: 40,
-            }
+            name: "plainTile"
         },
         {
-            name: "shutter",
-            floor: {
-                height: 40,
-            }
+            name: "pillarTile"
         },
         {
-            name: "plain",
-            floor: {
-                height: 40,
-            }
+            name: "lockedTile"
         },
         {
-            name: "plain",
-            floor: {
-                height: 40,
-            }
+            name: "shutterTile"
         },
         {
-            name: "shutter",
-            floor: {
-                height: 40,
-            }
+            name: "holeTile"
+        },
+        {
+            name: "plainTile"
+        },
+        {
+            name: "plainTile"
+        },
+        {
+            name: "pillarTile"
+        },
+        {
+            name: "lockedTile"
+        },
+        {
+            name: "shutterTile"
+        },
+        {
+            name: "holeTile"
+        },
+        {
+            name: "plainTile"
+        },
+        {
+            name: "plainTile"
+        },
+        {
+            name: "pillarTile"
+        },
+        {
+            name: "lockedTile"
+        },
+        {
+            name: "shutterTile"
+        },
+        {
+            name: "exitTile"
         }
     ])
 });

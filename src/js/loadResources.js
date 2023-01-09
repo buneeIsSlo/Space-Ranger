@@ -1,12 +1,12 @@
 export const loadResources = () => {
     loadSprite("background", "../assets/sprites/parallax-space-stars.png");
     loadSprite("fullbg", "../assets/sprites/parallax-space-backgound.png");
-    loadSprite("pillar", "../assets/sprites/pillar.png");
-    loadSprite("plain", "../assets/sprites/plain.png");
-    loadSprite("pass", "../assets/sprites/pass.png");
-    loadSprite("hole", "../assets/sprites/hole.png");
-    loadSprite("shutter", "../assets/sprites/shutter.png");
-    loadSprite("exit", "../assets/sprites/exit.png");
+    loadSprite("pillarTile", "../assets/sprites/pillar.png");
+    loadSprite("plainTile", "../assets/sprites/plain.png");
+    loadSprite("lockedTile", "../assets/sprites/pass.png");
+    loadSprite("holeTile", "../assets/sprites/hole.png");
+    loadSprite("shutterTile", "../assets/sprites/shutter.png");
+    loadSprite("exitTile", "../assets/sprites/exit.png");
 
     loadSprite("tranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,

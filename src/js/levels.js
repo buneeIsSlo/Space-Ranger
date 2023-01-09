@@ -46,11 +46,10 @@ export const addTiles = (tiles) => {
         ]);
 
         const w = back.width;
-        // back.pos = vec2((i * prevWidths), 0);
         back.pos = vec2((prevWidths), 0);
 
         add([
-            rect(w, tile.floor.height),
+            rect(w, 40),
             pos((prevWidths), height() - 20),
             area(),
             solid(),
@@ -60,5 +59,7 @@ export const addTiles = (tiles) => {
 
         prevWidths += w;
 
-    })
+        if (i === 0)
+            tile.onAdded(back);
+    });
 }
