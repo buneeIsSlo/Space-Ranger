@@ -14,6 +14,7 @@ const PLAYER_SPEED = 320;
 
 import { loadResources } from "./loadResources";
 import { LEVEL, addTiles } from "./levels";
+import { patrol, chase } from "./components";
 
 
 loadResources();
@@ -63,45 +64,6 @@ scene("main", () => {
         fixed(true),
     ])
 
-    // for (let i = 0; i < 8; i++) {
-    //     const back = add([
-    //         sprite("exit", { height: height() }),
-    //         layer("tile"),
-    //     ]);
-
-    //     const w = back.width;
-    //     back.pos = vec2((i * w), 0);
-
-    //     add([
-    //         rect(w, 40,),
-    //         pos((i * w), height() - 20),
-    //         area(),
-    //         solid(),
-    //         // outline(2, BLUE),
-    //         opacity(0),
-    //     ])
-    // }
-
-    const lvlConf = {
-        width: 16,
-        height: 16,
-        pos: vec2(0, 0),
-
-        // "=": () => [
-        //     sprite("floor"),
-        //     layer("game"),
-        //     area(),
-        //     solid(),
-        //     origin("bot"),
-        //     outline(2),
-        //     pos(vec2(0, 0)),
-        //     "floor",
-        // ],
-    }
-
-    addLevel(LEVEL, lvlConf);
-
-
     addTiles([
         {
             name: "plainTile",
@@ -110,15 +72,24 @@ scene("main", () => {
                 const w = tile.width;
                 const h = tile.height;
 
-                const block = add([
-                    rect(40, 40),
-                    pos(w / 2, (h / 2) + 40),
-                    area(),
-                    solid(),
-                    color(0, 255, 0),
-                    body(),
-                    origin("center"),
-                ]);
+                // const block = add([
+                //     rect(40, 40),
+                //     pos(w / 2, (h / 2) + 40),
+                //     area(),
+                //     solid(),
+                //     color(0, 255, 0),
+                //     body(),
+                //     origin("center"),
+                // ]);
+
+                // add([
+                //     sprite("floor", { height: 50 }),
+                //     pos(w / 2, height() - 150),
+                //     area(),
+                //     solid(),
+                //     origin("bot"),
+                //     scale(2),
+                // ])
             }
         },
         {
@@ -128,7 +99,25 @@ scene("main", () => {
             name: "pillarTile"
         },
         {
-            name: "lockedTile"
+            name: "lockedTile",
+            onAdded: (tile) => {
+                const w = tile.width;
+                const h = tile.height;
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
+                add([
+                    rect(20, 40),
+                    pos(tilePosX, (h / 2) + 40),
+                    area(),
+                    solid(),
+                    color(255, 0, 0),
+                    body(),
+                    origin("center"),
+                    // patrol(),
+                    chase(tranger),
+                    "bot"
+                ]);
+            }
         },
         {
             name: "shutterTile"
@@ -252,8 +241,10 @@ function playerMovement(player) {
         })
     });
 
-}
+    player.onCollide("bot", () => {
+        addKaboom(player.pos);
+        shake(20);
+        destroy(player);
+    })
 
-const floor = {
-    floor: true,
 }

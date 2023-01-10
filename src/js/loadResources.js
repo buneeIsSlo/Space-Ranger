@@ -7,6 +7,7 @@ export const loadResources = () => {
     loadSprite("holeTile", "../assets/sprites/hole.png");
     loadSprite("shutterTile", "../assets/sprites/shutter.png");
     loadSprite("exitTile", "../assets/sprites/exit.png");
+    loadSprite("block", "../assets/sprites/floor.png");
 
     loadSprite("tranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,

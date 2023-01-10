@@ -59,7 +59,8 @@ export const addTiles = (tiles) => {
 
         prevWidths += w;
 
-        if (i === 0)
+        if (typeof tile.onAdded !== "undefined") {
             tile.onAdded(back);
+        }
     });
 }
