@@ -9,6 +9,20 @@ export const loadResources = () => {
     loadSprite("exitTile", "../assets/sprites/exit.png");
     loadSprite("block", "../assets/sprites/floor.png");
 
+    loadSprite("crawly", "../assets/sprites/alien-enemy-walk.png", {
+        sliceX: 6,
+        anims: {
+            crawl: {
+                from: 0,
+                to: 5,
+                speed: 10,
+                loop: true,
+            }
+        }
+    })
+    loadSprite("flyer", "../assets/sprites/flyer.png", {
+        sliceX: 8,
+    })
     loadSprite("tranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,
         anims: {

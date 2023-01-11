@@ -53,7 +53,7 @@ export const addTiles = (tiles) => {
             pos((prevWidths), height() - 20),
             area(),
             solid(),
-            outline(2, BLUE),
+            // outline(2, BLUE),
             opacity(0),
         ])
 

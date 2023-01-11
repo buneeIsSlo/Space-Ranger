@@ -36,8 +36,23 @@ scene("main", () => {
         layer("game"),
         pos(0, 0),
         body(),
-        area({ width: 1, offset: vec2(35, 0), }),
+        scale(1.1),
+        origin("botleft"),
+        // area({ width: 1, offset: vec2(35, 0), }),
+        area({ width: 25, height: 40, offset: vec2(0) }),
         state("idle", ["idle", "jump", "run"]),
+        {
+            isFlipped: false,
+            resetArea() {
+                console.log(tranger.isFlipped);
+                if (tranger.isFlipped) {
+                    tranger.area.offset = vec2(40, 0);
+                }
+                else {
+                    tranger.area.offset = vec2(0);
+                }
+            }
+        }
     ])
     console.log(tranger);
     playerMovement(tranger);
@@ -105,18 +120,29 @@ scene("main", () => {
                 const h = tile.height;
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
+                // add([
+                //     rect(60, 40),
+                //     pos(tilePosX, (h / 2) + 40),
+                //     area(),
+                //     solid(),
+                //     color(255, 0, 0),
+                //     body(),
+                //     origin("center"),
+                //     chase(tranger),
+                // ])
                 add([
-                    rect(20, 40),
-                    pos(tilePosX, (h / 2) + 40),
-                    area(),
+                    sprite("crawly", { anim: "crawl" }),
+                    // rect(60, 40),
+                    pos(tilePosX, (h / 2)),
+                    area({ width: 40, height: 30 }),
                     solid(),
-                    color(255, 0, 0),
+                    // area(),
                     body(),
                     origin("center"),
-                    // patrol(),
                     chase(tranger),
-                    "bot"
-                ]);
+                    "bot",
+                    scale(1.3),
+                ])
             }
         },
         {
@@ -174,8 +200,17 @@ function playerMovement(player) {
         player.play("die");
     })
 
-    onKeyPress(["left", "right"], () => {
-        player.play("run");
+    onKeyPress("left", () => {
+        player.play("run")
+        player.isFlipped = true;
+        player.resetArea();
+        // player.pos(player.pos.x - 20, player.pos.y);
+    })
+
+    onKeyPress("right", () => {
+        player.play("run")
+        player.isFlipped = false;
+        player.resetArea();
     })
 
     onKeyDown("left", () => {
