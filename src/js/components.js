@@ -25,7 +25,7 @@ export function chase(target) {
 
     return {
         id: "chase",
-        require: ["pos", "area", "solid", "body"],
+        require: ["pos"],
         add() {
             this.scanRadius = 150
         },
@@ -39,9 +39,6 @@ export function chase(target) {
                 console.log(this.pos);
                 // console.log(vec2(target.pos.x, height() - 40))
                 // this.moveTo(target.pos, 80);
-                if (this.pos.x < target.pos.x) {
-                    console.log("after")
-                }
             }
         }
     }
