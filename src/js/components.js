@@ -27,7 +27,7 @@ export function chase(target) {
         id: "chase",
         require: ["pos"],
         add() {
-            this.scanRadius = 150
+            this.scanRadius = 200;
         },
         update() {
             if (Math.abs(target.pos.dist(this.pos)) <= this.scanRadius) {
@@ -39,6 +39,8 @@ export function chase(target) {
                 console.log(this.pos);
                 // console.log(vec2(target.pos.x, height() - 40))
                 // this.moveTo(target.pos, 80);
+                if (this.pos.x < target.pos.x + 40) this.flipX(true);
+                else this.flipX(false);
             }
         }
     }

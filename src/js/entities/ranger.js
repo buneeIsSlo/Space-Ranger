@@ -24,7 +24,8 @@ const {
 } = k
 
 export const ranger = () => {
-    const PLAYER_SPEED = 320;
+    const PLAYER_SPEED = 280;
+    const BULLET_SPEED = 420;
 
     let tranger = add([
         sprite("tranger", { anim: "idle" }),
@@ -90,6 +91,10 @@ export const ranger = () => {
             player.enterState("jump");
         });
 
+        onKeyPress("enter", () => {
+            spawnBullet(player.pos);
+        })
+
         onKeyRelease(['left', 'right', 'down', 'up'], () => {
             if (
                 !isKeyDown("left")
@@ -135,12 +140,26 @@ export const ranger = () => {
             })
         });
 
-        // player.onCollide("bot", () => {
-        //     addKaboom(player.pos);
-        //     shake(20);
-        //     destroy(player);
-        // })
+        player.onCollide("bot", (e) => {
+            addKaboom(player.pos);
+            shake(20);
+            destroy(player);
+            destroy(e);
+        })
 
+    }
+
+    function spawnBullet(p) {
+        const bullet = add([
+            rect(18, 10),
+            area(),
+            pos(p.x + 40, p.y - 30),
+            origin("center"),
+            color(127, 127, 255),
+            move(tranger.isFlipped ? LEFT : RIGHT, BULLET_SPEED),
+            cleanup(),
+            "bullet",
+        ])
     }
 
     return tranger;

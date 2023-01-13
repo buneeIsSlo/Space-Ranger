@@ -8,6 +8,7 @@ export const loadResources = () => {
     loadSprite("shutterTile", "../assets/sprites/shutter.png");
     loadSprite("exitTile", "../assets/sprites/exit.png");
     loadSprite("block", "../assets/sprites/floor.png");
+    loadSprite("stingerStone", "../assets/sprites/stingerStone.png");
 
     loadSprite("crawly", "../assets/sprites/alien-enemy-walk.png", {
         sliceX: 6,
@@ -20,8 +21,16 @@ export const loadResources = () => {
             }
         }
     })
-    loadSprite("flyer", "../assets/sprites/flyer.png", {
+    loadSprite("stinger", "../assets/sprites/flyer.png", {
         sliceX: 8,
+        anims: {
+            fly: {
+                from: 0,
+                to: 7,
+                speed: 15,
+                loop: true,
+            }
+        }
     })
     loadSprite("tranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,
