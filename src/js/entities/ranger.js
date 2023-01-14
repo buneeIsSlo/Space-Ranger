@@ -136,7 +136,10 @@ export const ranger = () => {
             // camPos(player.pos);
 
             let currCam = camPos();
-            camPos(player.pos.x, currCam.y);
+            // camPos(player.pos.x, currCam.y);
+            const from = camPos().x
+            const to = Math.max(player.pos.x + player.width / 2 + (player.isFlipped ? -60 : 60))
+            camPos(vec2(from + Math.sign(to - from) * Math.min(Math.abs(to - from), 1.5 * PLAYER_SPEED * dt()), currCam.y))
         });
 
         player.onStateEnter("jump", () => {
