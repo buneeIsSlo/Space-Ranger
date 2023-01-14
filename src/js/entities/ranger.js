@@ -34,22 +34,31 @@ export const ranger = () => {
         body(),
         scale(1.1),
         origin("botleft"),
-        // area({ width: 1, offset: vec2(35, 0), }),
         area({ width: 25, height: 40, offset: vec2(0) }),
         state("idle", ["idle", "jump", "run"]),
         {
             isFlipped: false,
-            resetArea() {
-                console.log(tranger.isFlipped);
+
+            offsetArea() {
                 if (tranger.isFlipped) {
                     tranger.area.offset = vec2(40, 0);
                 }
                 else {
                     tranger.area.offset = vec2(0);
                 }
+            },
+
+            areaHeightTo(val) {
+                tranger.area.height = val;
+                if (!tranger.isGrounded())
+                    tranger.area.offset.y = -25;
+                else
+                    tranger.area.offset.y = 0;
             }
         }
     ])
+
+    // tranger.jumpForce = 800;
 
     console.log(tranger);
     playerMovement(tranger);
@@ -61,26 +70,39 @@ export const ranger = () => {
         })
 
         onKeyPress("left", () => {
-            player.play("run")
             player.isFlipped = true;
-            player.resetArea();
-            // player.pos(player.pos.x - 20, player.pos.y);
+            player.offsetArea();
+
+            if (player.state === "jump") {
+                player.areaHeightTo(30);
+                return;
+            }
+
+            player.play("run");
         })
 
         onKeyPress("right", () => {
-            player.play("run")
             player.isFlipped = false;
-            player.resetArea();
+            player.offsetArea();
+
+            if (player.state === "jump") {
+                player.areaHeightTo(30);
+                return;
+            }
+
+            player.play("run");
         })
 
         onKeyDown("left", () => {
             player.flipX(true);
             player.move(-PLAYER_SPEED, 0);
+            if (player.isGrounded()) player.enterState("run");
         })
 
         onKeyDown("right", () => {
             player.flipX(false);
             player.move(PLAYER_SPEED, 0);
+            if (player.isGrounded()) player.enterState("run");
         })
 
         onKeyPress("space", () => {
@@ -89,6 +111,7 @@ export const ranger = () => {
             player.play("jump");
             player.jump();
             player.enterState("jump");
+            player.areaHeightTo(30);
         });
 
         onKeyPress("enter", () => {
@@ -101,28 +124,29 @@ export const ranger = () => {
                 && !isKeyDown("right")
                 && !isKeyDown("up")
                 && !isKeyDown("down")
+                && player.isGrounded()
             ) {
-                player.play("idle")
+                console.log(player.state);
+                player.enterState("idle");
+                player.play("idle");
             }
         });
 
         player.onUpdate(() => {
             // camPos(player.pos);
 
-            // if (player.state === "jump") {
-            //     player.play("jump");
-            //     console.log("jump mode");
-            // };
             let currCam = camPos();
             camPos(player.pos.x, currCam.y);
         });
 
         player.onStateEnter("jump", () => {
-            let checkForLanding = loop(0.3, () => {
+            let checkForLanding = loop(0.1, () => {
                 console.log("in loop");
 
                 if (player.isGrounded()) {
                     console.log("grounding");
+                    player.offsetArea();
+                    player.areaHeightTo(40);
 
                     if (isKeyDown("right") || isKeyDown("left")) {
                         player.play("run");
@@ -140,11 +164,12 @@ export const ranger = () => {
             })
         });
 
-        player.onCollide("bot", (e) => {
-            addKaboom(player.pos);
+        player.onCollide("stingerStone", (e) => {
+            // addKaboom(player.pos);
+            player.play("die");
             shake(20);
-            destroy(player);
-            destroy(e);
+            // destroy(player);
+            // destroy(e);
         })
 
     }

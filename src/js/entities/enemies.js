@@ -55,13 +55,15 @@ export const addStinger = (p, tranger) => {
     const STONE_SPEED = 200;
     let canShoot = true;
 
-    stinger.onUpdate(() => {
+    stinger.onUpdate(async () => {
         if (tranger.pos.dist(stinger.pos) <= 300) {
             if (tranger.pos.x > stinger.pos.x) stinger.flipX(true);
             else stinger.flipX(false);
 
             if (canShoot) {
                 const dir = tranger.pos.sub(stinger.pos).unit();
+
+                dir.x += 0.1; // to direct the stone more towards the center of the player 
 
                 add([
                     pos(stinger.pos),
@@ -75,7 +77,7 @@ export const addStinger = (p, tranger) => {
                 ])
 
                 canShoot = false;
-                wait(1, () => canShoot = true);
+                await wait(1, () => canShoot = true);
             }
         }
     })
