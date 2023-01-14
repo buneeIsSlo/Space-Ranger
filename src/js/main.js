@@ -27,7 +27,7 @@ const {
 import { loadResources } from "./loadResources";
 import { LEVEL, addTiles } from "./levels";
 import { patrol, chase } from "./components";
-import { addCrawler, addStinger } from "./entities/enimies"
+import { addCrawler, addStinger } from "./entities/enemies"
 import { ranger } from "./entities/ranger";
 
 
