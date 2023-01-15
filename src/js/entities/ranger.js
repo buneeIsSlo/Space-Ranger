@@ -70,6 +70,10 @@ export const ranger = () => {
         })
 
         onKeyPress("left", () => {
+            if (isKeyDown("right")) {
+                return;
+            }
+
             player.isFlipped = true;
             player.offsetArea();
 
@@ -82,6 +86,10 @@ export const ranger = () => {
         })
 
         onKeyPress("right", () => {
+            if (isKeyDown("left")) {
+                return;
+            }
+
             player.isFlipped = false;
             player.offsetArea();
 
@@ -94,15 +102,11 @@ export const ranger = () => {
         })
 
         onKeyDown("left", () => {
-            player.flipX(true);
-            player.move(-PLAYER_SPEED, 0);
-            if (player.isGrounded()) player.enterState("run");
+            moveLeft(player);
         })
 
         onKeyDown("right", () => {
-            player.flipX(false);
-            player.move(PLAYER_SPEED, 0);
-            if (player.isGrounded()) player.enterState("run");
+            moveRight(player);
         })
 
         onKeyPress("space", () => {
@@ -116,6 +120,7 @@ export const ranger = () => {
 
         onKeyPress("enter", () => {
             spawnBullet(player.pos);
+            destroyAll("bot");
         })
 
         onKeyRelease(['left', 'right', 'down', 'up'], () => {
@@ -139,7 +144,9 @@ export const ranger = () => {
             // camPos(player.pos.x, currCam.y);
             const from = camPos().x
             const to = Math.max(player.pos.x + player.width / 2 + (player.isFlipped ? -60 : 60))
-            camPos(vec2(from + Math.sign(to - from) * Math.min(Math.abs(to - from), 1.5 * PLAYER_SPEED * dt()), currCam.y))
+            const dir = vec2(from + Math.sign(to - from) * Math.min(Math.abs(to - from), 1.5 * PLAYER_SPEED * dt()), currCam.y);
+            camPos(dir.x < 200 ? 200 : dir.x, dir.y);
+            // camScale(0.5);
         });
 
         player.onStateEnter("jump", () => {
@@ -175,6 +182,26 @@ export const ranger = () => {
             // destroy(e);
         })
 
+    }
+
+    function moveLeft(player) {
+        if (isKeyDown("right")) return;
+
+        player.flipX(true);
+        // player.offsetArea();
+        player.isFlipped = true;
+        player.move(-PLAYER_SPEED, 0);
+        if (player.isGrounded()) player.enterState("run");
+    }
+
+    function moveRight(player) {
+        if (isKeyDown("left")) return;
+
+        player.flipX(false);
+        // player.offsetArea();
+        player.isFlipped = false;
+        player.move(PLAYER_SPEED, 0);
+        if (player.isGrounded()) player.enterState("run");
     }
 
     function spawnBullet(p) {

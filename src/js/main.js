@@ -69,6 +69,16 @@ scene("main", () => {
         fixed(true),
     ])
 
+    add([
+        rect(100, height()),
+        pos(-100, 0),
+        area(),
+        solid(),
+        layer("tile"),
+        opacity(0),
+        "barricade"
+    ])
+
     addTiles([
         {
             name: "plainTile",
