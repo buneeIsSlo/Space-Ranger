@@ -31,16 +31,14 @@ export function chase(target) {
         },
         update() {
             if (Math.abs(target.pos.dist(this.pos)) <= this.scanRadius) {
-                // console.log(Math.abs(target.pos.dist(this.pos)));
-                // follow target
-                // console.log("in the vicinity");
-                // let dir = target.pos.sub(thi.pos).unit();
+                if (this.state !== "chase") this.enterState("chase");
+
                 this.moveTo(vec2(target.pos.x + 40, height() - 40), 80);
-                console.log(this.pos);
-                // console.log(vec2(target.pos.x, height() - 40))
-                // this.moveTo(target.pos, 80);
                 if (this.pos.x < target.pos.x + 40) this.flipX(true);
                 else this.flipX(false);
+            }
+            else {
+                if (this.state !== "idle") this.enterState("idle");
             }
         }
     }

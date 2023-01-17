@@ -187,8 +187,8 @@ export const ranger = () => {
     function moveLeft(player) {
         if (isKeyDown("right")) return;
 
+
         player.flipX(true);
-        // player.offsetArea();
         player.isFlipped = true;
         player.move(-PLAYER_SPEED, 0);
         if (player.isGrounded()) player.enterState("run");
@@ -198,7 +198,6 @@ export const ranger = () => {
         if (isKeyDown("left")) return;
 
         player.flipX(false);
-        // player.offsetArea();
         player.isFlipped = false;
         player.move(PLAYER_SPEED, 0);
         if (player.isGrounded()) player.enterState("run");

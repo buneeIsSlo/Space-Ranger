@@ -13,6 +13,11 @@ export const loadResources = () => {
     loadSprite("crawly", "../assets/sprites/alien-enemy-walk.png", {
         sliceX: 6,
         anims: {
+            idle: {
+                from: 0,
+                to: 0,
+                loop: true,
+            },
             crawl: {
                 from: 0,
                 to: 5,

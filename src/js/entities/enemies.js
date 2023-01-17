@@ -27,7 +27,7 @@ import { chase, patrol } from "../components";
 
 export const addCrawler = (p, tranger) => {
     const crawler = add([
-        sprite("crawly", { anim: "crawl" }),
+        sprite("crawly", { anim: "idle" }),
         pos(p),
         area({ width: 40, height: 30 }),
         body(),
@@ -35,11 +35,20 @@ export const addCrawler = (p, tranger) => {
         chase(tranger),
         "bot",
         scale(1.3),
+        state("idle", ["idle", "chase"]),
     ]);
 
     crawler.onCollide("bullet", (e) => {
         destroy(crawler);
         destroy(e);
+    });
+
+    crawler.onStateEnter("idle", () => {
+        crawler.play("idle");
+    });
+
+    crawler.onStateEnter("chase", () => {
+        crawler.play("crawl");
     })
 }
 
