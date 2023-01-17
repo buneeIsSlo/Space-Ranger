@@ -29,7 +29,7 @@ export const addCrawler = (p, tranger) => {
     const crawler = add([
         sprite("crawly", { anim: "idle" }),
         pos(p),
-        area({ width: 40, height: 30 }),
+        area({ width: 35, height: 30 }),
         body(),
         origin("bot"),
         chase(tranger),

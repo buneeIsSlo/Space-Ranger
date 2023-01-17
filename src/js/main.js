@@ -29,6 +29,7 @@ import { LEVEL, addTiles } from "./levels";
 import { patrol, chase } from "./components";
 import { addCrawler, addStinger } from "./entities/enemies"
 import { ranger } from "./entities/ranger";
+import { addServers, addTerminal } from "./entities/props";
 
 
 loadResources();
@@ -69,15 +70,15 @@ scene("main", () => {
         fixed(true),
     ])
 
-    add([
-        rect(100, height()),
-        pos(-100, 0),
-        area(),
-        solid(),
-        layer("tile"),
-        opacity(0),
-        "barricade"
-    ])
+    // add([
+    //     rect(100, height()),
+    //     pos(-100, 0),
+    //     area(),
+    //     solid(),
+    //     layer("tile"),
+    //     opacity(0),
+    //     "barricade"
+    // ])
 
     addTiles([
         {
@@ -86,25 +87,6 @@ scene("main", () => {
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
                 const w = tile.width;
                 const h = tile.height;
-
-                // const block = add([
-                //     rect(40, 40),
-                //     pos(w / 2, (h / 2) + 40),
-                //     area(),
-                //     solid(),
-                //     color(0, 255, 0),
-                //     body(),
-                //     origin("center"),
-                // ]);
-
-                // add([
-                //     sprite("floor", { height: 50 }),
-                //     pos(w / 2, height() - 150),
-                //     area(),
-                //     solid(),
-                //     origin("bot"),
-                //     scale(2),
-                // ])
             }
         },
         {
@@ -118,8 +100,7 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
-                addCrawler(vec2(tilePosX, h / 2), tranger);
-                addStinger(vec2(tilePosX, h / 4), tranger);
+                addCrawler(vec2(tilePosX, h), tranger);
             }
         },
         {
@@ -131,18 +112,25 @@ scene("main", () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
                 addCrawler(vec2(tilePosX, h / 2), tranger);
-                addCrawler(vec2(tilePosX + w, h / 2), tranger);
             }
-        },
-        {
-            name: "plainTile"
         },
         {
             name: "plainTile",
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
-                addCrawler(vec2(tilePosX, h / 2), tranger);
+                addServers(vec2(tilePosX, h / 2));
+                addTerminal(vec2(tilePosX + w / 2, 240));
+            }
+        },
+        {
+            name: "plainTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                addCrawler(vec2(tilePosX + w / 2, h / 2), tranger);
+                addServers(vec2(tilePosX, h / 2));
+
             }
         },
         {
@@ -165,22 +153,50 @@ scene("main", () => {
             }
         },
         {
-            name: "holeTile"
+            name: "holeTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                addStinger(vec2(tilePosX + w, h / 4), tranger);
+                addCrawler(vec2(tilePosX + w, h), tranger);
+            }
         },
         {
             name: "plainTile"
         },
         {
-            name: "plainTile"
+            name: "plainTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                addServers(vec2(tilePosX, h / 2));
+                addTerminal(vec2(tilePosX + w / 2, 240));
+
+            }
         },
         {
-            name: "pillarTile"
+            name: "pillarTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                addServers(vec2(tilePosX, h / 2));
+            }
         },
         {
-            name: "lockedTile"
+            name: "lockedTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                addStinger(vec2(tilePosX, h / 4), tranger);
+            }
         },
         {
-            name: "shutterTile"
+            name: "shutterTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                addStinger(vec2(tilePosX + w, h / 4), tranger);
+            }
         },
         {
             name: "exitTile"

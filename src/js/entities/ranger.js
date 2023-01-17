@@ -174,7 +174,7 @@ export const ranger = () => {
             })
         });
 
-        player.onCollide("stingerStone", (e) => {
+        player.onCollide("bot", (e) => {
             // addKaboom(player.pos);
             player.play("die");
             shake(20);
