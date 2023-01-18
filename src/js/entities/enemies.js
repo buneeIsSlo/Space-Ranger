@@ -33,9 +33,10 @@ export const addCrawler = (p, tranger) => {
         body(),
         origin("bot"),
         chase(tranger),
-        "bot",
         scale(1.3),
         state("idle", ["idle", "chase"]),
+        "bot",
+        "danger",
     ]);
 
     crawler.onCollide("bullet", (e) => {
@@ -59,6 +60,7 @@ export const addStinger = (p, tranger) => {
         area({ width: 40, height: 30 }),
         origin("center"),
         "bot",
+        "danger",
     ]);
 
     const STONE_SPEED = 200;
@@ -69,7 +71,7 @@ export const addStinger = (p, tranger) => {
             if (tranger.pos.x > stinger.pos.x) stinger.flipX(true);
             else stinger.flipX(false);
 
-            if (canShoot) {
+            if (canShoot && !tranger.isDead) {
                 const dir = tranger.pos.sub(stinger.pos).unit();
 
                 dir.x += 0.1; // to direct the stone more towards the center of the player 
@@ -81,8 +83,9 @@ export const addStinger = (p, tranger) => {
                     area(),
                     cleanup(),
                     origin("center"),
-                    "stingerStone",
                     z(-1),
+                    "stingerStone",
+                    "danger",
                 ])
 
                 canShoot = false;

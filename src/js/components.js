@@ -31,6 +31,7 @@ export function chase(target) {
         },
         update() {
             if (Math.abs(target.pos.dist(this.pos)) <= this.scanRadius) {
+                if (target.isDead) return;
                 if (this.state !== "chase") this.enterState("chase");
 
                 this.moveTo(vec2(target.pos.x + 40, height() - 40), 80);

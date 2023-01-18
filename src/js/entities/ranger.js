@@ -38,6 +38,7 @@ export const ranger = () => {
         state("idle", ["idle", "jump", "run"]),
         {
             isFlipped: false,
+            isDead: false,
 
             offsetArea() {
                 if (tranger.isFlipped) {
@@ -56,23 +57,24 @@ export const ranger = () => {
                     tranger.area.offset.y = 0;
             }
         }
-    ])
+    ]);
 
-    // tranger.jumpForce = 800;
 
     console.log(tranger);
     playerMovement(tranger);
 
+    onKeyPress("enter", () => {
+        if (!tranger.isDead);
+        spawnBullet(tranger.pos);
+        // destroyAll("bot");
+        tranger.isDead = false;
+    })
+
     function playerMovement(player) {
 
-        onKeyDown("down", () => {
-            player.play("die");
-        })
-
         onKeyPress("left", () => {
-            if (isKeyDown("right")) {
-                return;
-            }
+
+            if (isKeyDown("right") || player.isDead) return;
 
             player.isFlipped = true;
             player.offsetArea();
@@ -86,9 +88,7 @@ export const ranger = () => {
         })
 
         onKeyPress("right", () => {
-            if (isKeyDown("left")) {
-                return;
-            }
+            if (isKeyDown("left") || player.isDead) return;
 
             player.isFlipped = false;
             player.offsetArea();
@@ -102,15 +102,17 @@ export const ranger = () => {
         })
 
         onKeyDown("left", () => {
+            if (player.isDead) return;
             moveLeft(player);
         })
 
         onKeyDown("right", () => {
+            if (player.isDead) return;
             moveRight(player);
         })
 
         onKeyPress("space", () => {
-            if (!player.isGrounded()) return;
+            if (!player.isGrounded() || player.isDead) return;
 
             player.play("jump");
             player.jump();
@@ -118,12 +120,8 @@ export const ranger = () => {
             player.areaHeightTo(30);
         });
 
-        onKeyPress("enter", () => {
-            spawnBullet(player.pos);
-            destroyAll("bot");
-        })
-
         onKeyRelease(['left', 'right', 'down', 'up'], () => {
+            if (player.isDead) return;
             if (
                 !isKeyDown("left")
                 && !isKeyDown("right")
@@ -154,6 +152,11 @@ export const ranger = () => {
                 console.log("in loop");
 
                 if (player.isGrounded()) {
+                    if (player.isDead) {
+                        checkForLanding();
+                        return;
+                    }
+
                     console.log("grounding");
                     player.offsetArea();
                     player.areaHeightTo(40);
@@ -174,12 +177,36 @@ export const ranger = () => {
             })
         });
 
-        player.onCollide("bot", (e) => {
-            // addKaboom(player.pos);
+        player.onCollide("danger", (e) => {
             player.play("die");
-            shake(20);
-            // destroy(player);
-            // destroy(e);
+            shake();
+            player.isDead = true;
+            destroy(e);
+
+            let shade = addShade();
+            let fadeIn = loop(0.2, () => {
+                if (shade.opacity >= 0.4) fadeIn();
+
+                else shade.opacity += 0.075;
+            });
+            let hint = add([
+                text("Press key to respawn", { size: 20, font: "sink" }),
+                pos(toWorld(center())),
+                // pos(vec2(center())),
+                color(WHITE),
+                origin("center"),
+                layer("game"),
+                z(1001),
+                "gone"
+            ]);
+
+            onKeyPress(",", () => {
+                destroyAll("gone");
+            })
+        });
+
+        player.onAnimEnd("die", () => {
+            player.pause = true;
         })
 
     }
@@ -214,6 +241,20 @@ export const ranger = () => {
             cleanup(),
             "bullet",
         ])
+    }
+
+    function addShade() {
+        let shade = add([
+            rect(width(), height()),
+            pos(0, 0),
+            fixed(),
+            color(BLACK),
+            opacity(0),
+            z(1000),
+            "gone",
+        ]);
+
+        return shade;
     }
 
     return tranger;
