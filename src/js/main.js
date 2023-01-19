@@ -42,19 +42,12 @@ scene("main", () => {
         "tile",
         "game",
         "foreground",
+        "ui"
     ], "game");
 
     gravity(2400);
 
     const tranger = ranger()
-
-    add([
-        text("I eat hearts", { size: 24, font: "sink" }),
-        pos(center()),
-        origin("center"),
-        outline(6),
-        color([255, 0, 0])
-    ])
 
     add([
         sprite("background", { width: width(), height: height(), tiled: true }),
@@ -70,15 +63,15 @@ scene("main", () => {
         fixed(true),
     ])
 
-    // add([
-    //     rect(100, height()),
-    //     pos(-100, 0),
-    //     area(),
-    //     solid(),
-    //     layer("tile"),
-    //     opacity(0),
-    //     "barricade"
-    // ])
+    add([
+        rect(100, height()),
+        pos(-100, 0),
+        area(),
+        solid(),
+        layer("tile"),
+        opacity(0),
+        "barricade"
+    ])
 
     addTiles([
         {

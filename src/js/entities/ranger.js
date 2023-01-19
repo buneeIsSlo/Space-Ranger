@@ -1,4 +1,6 @@
 import k from "../kaboom";
+import { addBackdrop } from "../ui/backDrop";
+import { addBtn } from "../ui/button";
 
 const {
     add,
@@ -58,7 +60,6 @@ export const ranger = () => {
             }
         }
     ]);
-
 
     console.log(tranger);
     playerMovement(tranger);
@@ -177,32 +178,32 @@ export const ranger = () => {
             })
         });
 
-        player.onCollide("danger", (e) => {
+        player.onCollide("danger", async (e) => {
             player.play("die");
             shake();
             player.isDead = true;
             destroy(e);
 
-            let shade = addShade();
-            let fadeIn = loop(0.2, () => {
-                if (shade.opacity >= 0.4) fadeIn();
+            addBackdrop();
 
-                else shade.opacity += 0.075;
-            });
-            let hint = add([
-                text("Press key to respawn", { size: 20, font: "sink" }),
-                pos(toWorld(center())),
-                // pos(vec2(center())),
-                color(WHITE),
-                origin("center"),
-                layer("game"),
-                z(1001),
-                "gone"
-            ]);
+            await wait(0.5, () => {
+                let fail = add([
+                    text("Mission Failed", { size: 18, font: "sink", letterSpacing: 2 }),
+                    pos(center().x, center().y - 40),
+                    color(RED),
+                    origin("center"),
+                    layer("ui"),
+                    fixed(),
+                    "endScr"
+                ]);
+
+                addBtn("test", vec2(center().x, height() - 110), () => go("main"));
+            })
 
             onKeyPress(",", () => {
-                destroyAll("gone");
-            })
+                destroyAll("endScr");
+                player.pause = false;
+            });
         });
 
         player.onAnimEnd("die", () => {
@@ -240,21 +241,7 @@ export const ranger = () => {
             move(tranger.isFlipped ? LEFT : RIGHT, BULLET_SPEED),
             cleanup(),
             "bullet",
-        ])
-    }
-
-    function addShade() {
-        let shade = add([
-            rect(width(), height()),
-            pos(0, 0),
-            fixed(),
-            color(BLACK),
-            opacity(0),
-            z(1000),
-            "gone",
         ]);
-
-        return shade;
     }
 
     return tranger;
