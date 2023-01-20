@@ -102,6 +102,7 @@ export const ranger = () => {
             }
 
             player.play("run");
+            console.log(player.curPlatform());
         })
 
         onKeyDown("left", () => {
@@ -125,6 +126,13 @@ export const ranger = () => {
 
         onKeyRelease(['left', 'right', 'down', 'up'], () => {
             if (player.isDead) return;
+
+            if (!player.isGrounded()) {
+                player.enterState("idle");
+                player.play("idle");
+                return;
+            }
+
             if (
                 !isKeyDown("left")
                 && !isKeyDown("right")
