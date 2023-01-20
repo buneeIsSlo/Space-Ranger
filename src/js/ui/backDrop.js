@@ -37,7 +37,7 @@ export function addBackdrop() {
     ]);
 
     const fadeIn = loop(0.2, () => {
-        if (shade.opacity >= 0.4) fadeIn();
+        if (shade.opacity >= 0.5) fadeIn();
 
         else shade.opacity += 0.075;
     });

@@ -35,18 +35,22 @@ export function addBtn(t, p, func) {
         outline(1, WHITE),
         opacity(0),
         layer("ui"),
-        "endScr"
+        "endScr",
+        "endUI",
+        "outty"
     ]);
 
     const txt = add([
         text("RESTART LEVEL", { size: 8, font: "sink", letterSpacing: 2, }),
-        pos(btn.pos),
+        pos(p),
         area(),
         fixed(),
         origin("center"),
         color(WHITE),
         layer("ui"),
-        "endScr"
+        opacity(0),
+        "endScr",
+        "endUI"
     ]);
 
     btn.onClick(() => func());

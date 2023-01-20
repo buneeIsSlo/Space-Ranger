@@ -1,6 +1,7 @@
 import k from "../kaboom";
 import { addBackdrop } from "../ui/backDrop";
 import { addBtn } from "../ui/button";
+import { showEndScreen } from "../ui/endScreen";
 
 const {
     add,
@@ -178,27 +179,16 @@ export const ranger = () => {
             })
         });
 
-        player.onCollide("danger", async (e) => {
+        player.onCollide("danger", (e) => {
+            if (player.isDead) return;
+
+            player.isDead = true;
             player.play("die");
             shake();
-            player.isDead = true;
             destroy(e);
 
             addBackdrop();
-
-            await wait(0.5, () => {
-                let fail = add([
-                    text("Mission Failed", { size: 18, font: "sink", letterSpacing: 2 }),
-                    pos(center().x, center().y - 40),
-                    color(RED),
-                    origin("center"),
-                    layer("ui"),
-                    fixed(),
-                    "endScr"
-                ]);
-
-                addBtn("test", vec2(center().x, height() - 110), () => go("main"));
-            })
+            showEndScreen();
 
             onKeyPress(",", () => {
                 destroyAll("endScr");
