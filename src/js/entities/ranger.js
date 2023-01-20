@@ -1,6 +1,5 @@
 import k from "../kaboom";
 import { addBackdrop } from "../ui/backDrop";
-import { addBtn } from "../ui/button";
 import { showEndScreen } from "../ui/endScreen";
 
 const {
@@ -37,8 +36,10 @@ export const ranger = () => {
         body(),
         scale(1.1),
         origin("botleft"),
-        area({ width: 25, height: 40, offset: vec2(0) }),
+        area({ width: 25, height: 35, offset: vec2(0) }),
         state("idle", ["idle", "jump", "run"]),
+        "killStone",
+
         {
             isFlipped: false,
             isDead: false,
@@ -161,7 +162,7 @@ export const ranger = () => {
 
                     console.log("grounding");
                     player.offsetArea();
-                    player.areaHeightTo(40);
+                    player.areaHeightTo(35);
 
                     if (isKeyDown("right") || isKeyDown("left")) {
                         player.play("run");

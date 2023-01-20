@@ -76,21 +76,41 @@ export const addStinger = (p, tranger) => {
 
                 dir.x += 0.1; // to direct the stone more towards the center of the player 
 
-                add([
-                    pos(stinger.pos),
-                    move(dir, STONE_SPEED),
-                    sprite("stingerStone", { width: 18, height: 18 }),
-                    area(),
-                    cleanup(),
-                    origin("center"),
-                    z(-1),
-                    "stingerStone",
-                    "danger",
-                ])
+                let stone = addStingerSton();
+                stone.use(move(dir, STONE_SPEED));
 
                 canShoot = false;
-                await wait(1, () => canShoot = true);
+                await wait(0.8, () => canShoot = true);
             }
         }
     })
+
+    function addStingerSton() {
+        const stone = add([
+            pos(stinger.pos),
+            sprite("stingerStone", { width: 18, height: 18 }),
+            area({ width: 12, offset: vec2(0) }),
+            cleanup(),
+            origin("center"),
+            z(-1),
+            "stingerStone",
+            "danger",
+        ]);
+
+
+        stone.onCollide("killStone", () => {
+            const impact = add([
+                sprite("impact", { anim: "hit" }),
+                area({ width: 20 }),
+                pos(stone.pos),
+                origin("center"),
+                rotate(90),
+                lifespan(0.2, { fade: 0.1 }),
+            ]);
+
+            destroy(stone);
+        })
+
+        return stone;
+    }
 }

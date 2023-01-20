@@ -55,6 +55,7 @@ export const addTiles = (tiles) => {
             solid(),
             // outline(2, BLUE),
             opacity(0),
+            "killStone",
         ])
 
         prevWidths += w;

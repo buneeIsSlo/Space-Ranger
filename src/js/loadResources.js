@@ -12,6 +12,17 @@ export const loadResources = () => {
     loadSprite("servers", "../assets/sprites/server-gabinetes.png");
     loadSprite("terminal", "../assets/sprites/small-terminal.png");
 
+    loadSprite("impact", "../assets/sprites/wall-impact-blast.png", {
+        sliceX: 2,
+        anims: {
+            hit: {
+                from: 0,
+                to: 1,
+                loop: true,
+            }
+        }
+    });
+
     loadSprite("crawly", "../assets/sprites/alien-enemy-walk.png", {
         sliceX: 6,
         anims: {
