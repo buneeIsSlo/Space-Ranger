@@ -11,6 +11,7 @@ export const loadResources = () => {
     loadSprite("stingerStone", "../assets/sprites/stingerStone.png");
     loadSprite("servers", "../assets/sprites/server-gabinetes.png");
     loadSprite("terminal", "../assets/sprites/small-terminal.png");
+    loadSprite("orb", "../assets/sprites/orbby.png");
 
     loadSprite("impact", "../assets/sprites/wall-impact-blast.png", {
         sliceX: 2,

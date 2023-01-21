@@ -29,7 +29,7 @@ import { LEVEL, addTiles } from "./levels";
 import { patrol, chase } from "./components";
 import { addCrawler, addStinger } from "./entities/enemies"
 import { ranger } from "./entities/ranger";
-import { addServers, addTerminal } from "./entities/props";
+import { addServers, addTerminal, addOrb } from "./entities/props";
 
 
 loadResources();
@@ -76,14 +76,16 @@ scene("main", () => {
     addTiles([
         {
             name: "plainTile",
+        },
+        {
+            name: "plainTile",
             onAdded: (tile) => {
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
                 const w = tile.width;
                 const h = tile.height;
+
+                addOrb(vec2(tilePosX + (w / 2), h / 2));
             }
-        },
-        {
-            name: "plainTile"
         },
         {
             name: "pillarTile"
@@ -97,7 +99,14 @@ scene("main", () => {
             }
         },
         {
-            name: "shutterTile"
+            name: "shutterTile",
+            onAdded: (tile) => {
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                const w = tile.width;
+                const h = tile.height;
+
+                addOrb(vec2(tilePosX + (w / 2), h / 2));
+            }
         },
         {
             name: "holeTile",
@@ -105,6 +114,7 @@ scene("main", () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
                 addCrawler(vec2(tilePosX, h / 2), tranger);
+                addStinger(vec2(tilePosX + (w / 2), h / 4), tranger);
             }
         },
         {
