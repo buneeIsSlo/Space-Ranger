@@ -59,6 +59,23 @@ export const ranger = () => {
                     tranger.area.offset.y = -25;
                 else
                     tranger.area.offset.y = 0;
+            },
+
+            die() {
+                if (tranger.isDead) return;
+
+                tranger.origin = "topleft";
+                tranger.isDead = true;
+                tranger.play("die");
+                shake();
+
+                addBackdrop();
+                showEndScreen();
+
+                onKeyPress(",", () => {
+                    destroyAll("endScr");
+                    tranger.pause = false;
+                });
             }
         }
     ]);
@@ -148,6 +165,9 @@ export const ranger = () => {
 
         player.onUpdate(() => {
             // camPos(player.pos);
+            if (player.pos.y > height() + 40) {
+                player.die();
+            }
 
             let currCam = camPos();
             // camPos(player.pos.x, currCam.y);
@@ -188,21 +208,8 @@ export const ranger = () => {
             })
         });
 
-        player.onCollide("danger", (e) => {
-            if (player.isDead) return;
-
-            player.isDead = true;
-            player.play("die");
-            shake();
-            destroy(e);
-
-            addBackdrop();
-            showEndScreen();
-
-            onKeyPress(",", () => {
-                destroyAll("endScr");
-                player.pause = false;
-            });
+        player.onCollide("danger", () => {
+            player.die();
         });
 
         player.onAnimEnd("die", () => {

@@ -30,6 +30,10 @@ export function chase(target) {
             this.scanRadius = 200;
         },
         update() {
+            if (target.isDead) {
+                this.enterState("idle");
+            }
+
             if (Math.abs(target.pos.dist(this.pos)) <= this.scanRadius) {
                 if (target.isDead) return;
                 if (this.state !== "chase") this.enterState("chase");
