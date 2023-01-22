@@ -34,6 +34,7 @@ import { addServers, addTerminal, addOrb } from "./entities/props";
 
 loadResources();
 // debug.inspect = true;
+// debug.timeScale = 0.2;
 
 scene("main", () => {
     layers([
@@ -95,6 +96,7 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addCrawler(vec2(tilePosX, h), tranger);
             }
         },
@@ -113,8 +115,10 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addCrawler(vec2(tilePosX, h / 2), tranger);
                 addStinger(vec2(tilePosX + (w / 2), h / 4), tranger);
+
             }
         },
         {
@@ -122,8 +126,13 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                const [orbPosX, orbPosY] = [tilePosX + (w / 2), h / 4]
+
                 addServers(vec2(tilePosX, h / 2));
                 addTerminal(vec2(tilePosX + w / 2, 240));
+                addOrb(vec2(orbPosX, orbPosY));
+                addOrb(vec2(orbPosX - 50, orbPosY + 30));
+                addOrb(vec2(orbPosX + 50, orbPosY + 30));
             }
         },
         {
@@ -131,6 +140,7 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addCrawler(vec2(tilePosX + w / 2, h / 2), tranger);
                 addServers(vec2(tilePosX, h / 2));
 
@@ -144,7 +154,9 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addCrawler(vec2(tilePosX, h / 2), tranger);
+
             }
         },
         {
@@ -152,7 +164,9 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addCrawler(vec2(tilePosX + w, h / 2), tranger);
+                addOrb(vec2(tilePosX + (w / 2), h / 2));
             }
         },
         {
@@ -160,8 +174,10 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addStinger(vec2(tilePosX + w, h / 4), tranger);
                 addCrawler(vec2(tilePosX + w, h), tranger);
+                addOrb(vec2(tilePosX + (w - 200), h / 2));
             }
         },
         {
@@ -172,8 +188,13 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+                const [orbPosX, orbPosY] = [tilePosX + (w / 2), h / 4]
+
                 addServers(vec2(tilePosX, h / 2));
                 addTerminal(vec2(tilePosX + w / 2, 240));
+                addOrb(vec2(orbPosX, orbPosY));
+                addOrb(vec2(orbPosX - 50, orbPosY + 30));
+                addOrb(vec2(orbPosX + 50, orbPosY + 30));
 
             }
         },
@@ -190,7 +211,11 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addStinger(vec2(tilePosX, h / 4), tranger);
+                addOrb(vec2(tilePosX, h - 40));
+                addOrb(vec2(tilePosX + (w / 2), h - 40));
+                addOrb(vec2(tilePosX + w, h - 40));
             }
         },
         {
@@ -198,11 +223,30 @@ scene("main", () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
                 addStinger(vec2(tilePosX + w, h / 4), tranger);
+                addOrb(vec2(tilePosX + (w / 2), h - 40));
+                addOrb(vec2(tilePosX + w, h - 40));
             }
         },
         {
-            name: "exitTile"
+            name: "exitTile",
+            onAdded: (tile) => {
+                const [w, h] = [tile.width, tile.height];
+                const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
+
+                const exit = add([
+                    rect(1, height()),
+                    pos(tilePosX + (w / 2), h),
+                    area(),
+                    origin("botleft"),
+                    layer("game"),
+                    opacity(0),
+                    "exit",
+                ]);
+
+                exit.onCollide("ranger", () => console.log("end game"));
+            }
         }
     ])
 });

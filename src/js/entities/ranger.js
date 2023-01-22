@@ -39,6 +39,7 @@ export const ranger = () => {
         area({ width: 25, height: 35, offset: vec2(0) }),
         state("idle", ["idle", "jump", "run"]),
         "killStone",
+        "ranger",
 
         {
             isFlipped: false,
@@ -144,7 +145,7 @@ export const ranger = () => {
         onKeyRelease(['left', 'right', 'down', 'up'], () => {
             if (player.isDead) return;
 
-            if (!player.isGrounded()) {
+            if (!player.isGrounded() && player.state !== "jump") {
                 player.enterState("idle");
                 player.play("idle");
                 return;
@@ -166,7 +167,7 @@ export const ranger = () => {
         player.onUpdate(() => {
             // camPos(player.pos);
             if (player.pos.y > height() + 40) {
-                player.die();
+                // player.die();
             }
 
             let currCam = camPos();

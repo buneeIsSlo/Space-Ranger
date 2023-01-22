@@ -26,12 +26,12 @@ const {
 
 export const addServers = (p) => {
     const servers = add([
-        sprite("servers"),
+        sprite("servers",),
         pos(p),
         area(),
         body(),
         origin("center"),
-        scale(1.4),
+        scale(1.6),
         "killStone"
     ])
 }
@@ -50,11 +50,13 @@ export const addOrb = (p) => {
     const orb = add([
         sprite("orb"),
         pos(p),
-        area(),
+        area({ width: 100, height: 100, offset: vec2(0, -2) }),
         origin("center"),
         scale(0.2),
         layer("ui"),
         outline(5, RED),
         hover()
-    ])
+    ]);
+
+    orb.onCollide("ranger", () => destroy(orb));
 }
