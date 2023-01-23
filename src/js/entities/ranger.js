@@ -28,6 +28,8 @@ const {
 export const ranger = () => {
     const PLAYER_SPEED = 280;
     const BULLET_SPEED = 420;
+    let music = play("bipedalMech", { loop: true });
+    volume(0.5);
 
     let tranger = add([
         sprite("tranger", { anim: "idle" }),
@@ -73,9 +75,12 @@ export const ranger = () => {
                 addBackdrop();
                 showEndScreen();
 
+                music.stop();
+                play("dies", { volume: 0.7 });
+
                 onKeyPress(",", () => {
                     destroyAll("endScr");
-                    tranger.pause = false;
+                    tranger.paused = false;
                 });
             }
         }

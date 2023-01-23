@@ -12,6 +12,9 @@ export const loadResources = () => {
     loadSprite("servers", "../assets/sprites/server-gabinetes.png");
     loadSprite("terminal", "../assets/sprites/small-terminal.png");
     loadSprite("orb", "../assets/sprites/orbby.png");
+    loadSound("bipedalMech", "../assets/sounds/bipedalMech.wav");
+    loadSound("pickedOrb", "../assets/sounds/pickedOrb.wav");
+    loadSound("dies", "../assets/sounds/dies.wav");
 
     loadSprite("impact", "../assets/sprites/wall-impact-blast.png", {
         sliceX: 2,
