@@ -1,6 +1,7 @@
 import k from "../kaboom";
 import { addBackdrop } from "../ui/backDrop";
 import { showEndScreen } from "../ui/endScreen";
+import { addOrbCount } from "../ui/orbs";
 
 const {
     add,
@@ -88,6 +89,7 @@ export const ranger = () => {
 
     console.log(tranger);
     playerMovement(tranger);
+    let orbCount = addOrbCount();
 
     onKeyPress("enter", () => {
         if (!tranger.isDead);
@@ -217,6 +219,12 @@ export const ranger = () => {
         player.onCollide("danger", () => {
             player.die();
         });
+
+        player.onCollide("orb", (orb) => {
+            destroy(orb);
+            play("pickedOrb", { volume: 1 });
+            orbCount.text = Number(orbCount.text) + 1;
+        })
 
         player.onAnimEnd("die", () => {
             player.pause = true;

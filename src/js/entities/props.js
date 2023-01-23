@@ -55,11 +55,7 @@ export const addOrb = (p) => {
         scale(0.2),
         layer("ui"),
         outline(5, RED),
-        hover()
+        hover(),
+        "orb"
     ]);
-
-    orb.onCollide("ranger", () => {
-        destroy(orb);
-        play("pickedOrb", { volume: 1 });
-    });
 }
