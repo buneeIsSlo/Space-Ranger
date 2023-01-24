@@ -1,5 +1,4 @@
 import k from "../kaboom";
-import { addBackdrop } from "./backDrop";
 import { addBtn } from "./button";
 
 const {
@@ -39,7 +38,7 @@ export async function showEndScreen() {
             "endUI"
         ]);
 
-        addBtn("test", vec2(center().x, height() - 110), () => go("main"));
+        addBtn("test", vec2(center().x, height() - 110), () => go("lab"));
 
         for (let i = 0; i < 10; i++) {
             setTimeout(() => {
