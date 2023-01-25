@@ -3,6 +3,7 @@ import { addTiles } from "../levels";
 import { addCrawler, addStinger } from "../entities/enemies";
 import { ranger } from "../entities/ranger";
 import { addServers, addTerminal, addOrb } from "../entities/props";
+import { addBackdrop } from "../ui/backDrop";
 
 export default () => {
     const {
@@ -236,7 +237,10 @@ export default () => {
                     "exit",
                 ]);
 
-                exit.onCollide("ranger", () => console.log("end game"));
+                exit.onCollide("ranger", () => {
+                    addBackdrop(2, 0, 1);
+                    wait(2, () => go("end"));
+                });
             }
         }
     ])

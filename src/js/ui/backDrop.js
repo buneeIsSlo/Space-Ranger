@@ -23,27 +23,30 @@ const {
     fixed,
 } = k;
 
-export function addBackdrop() {
+export function addBackdrop(time, from, to) {
     const shade = add([
         rect(width(), height()),
         pos(center()),
         fixed(),
         color(BLACK),
         origin("center"),
-        opacity(0),
+        opacity(from),
         layer("ui"),
         "shade",
         "endScr"
     ]);
 
-    const fadeIn = loop(0.2, () => {
-        if (shade.opacity >= 0.5) fadeIn();
-
-        else shade.opacity += 0.075;
-    });
+    let timer = 0;
+    shade.onUpdate(() => {
+        if (timer < time) {
+            timer += dt();
+            shade.opacity = lerp(from, to, timer);
+            // shade.opacity = map(timer, 0, time, from, to);
+        }
+    })
 
 }
 
 export function removeBackdrop() {
-    destroy("shade");
+    destroyAll("shade");
 }

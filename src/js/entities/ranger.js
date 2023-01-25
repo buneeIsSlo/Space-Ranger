@@ -73,7 +73,7 @@ export const ranger = () => {
                 tranger.play("die");
                 shake();
 
-                addBackdrop();
+                addBackdrop(1, 0, 0.5);
                 showEndScreen();
 
                 music.stop();

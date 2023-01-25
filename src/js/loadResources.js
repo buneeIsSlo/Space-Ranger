@@ -1,6 +1,6 @@
 export const loadResources = () => {
     loadSprite("background", "../assets/sprites/parallax-space-stars.png");
-    loadSprite("fullbg", "../assets/sprites/parallax-space-backgound.png");
+    loadSprite("fullbg", "../assets/sprites/back.png");
     loadSprite("pillarTile", "../assets/sprites/pillar.png");
     loadSprite("plainTile", "../assets/sprites/plain.png");
     loadSprite("lockedTile", "../assets/sprites/pass.png");
@@ -12,9 +12,17 @@ export const loadResources = () => {
     loadSprite("servers", "../assets/sprites/server-gabinetes.png");
     loadSprite("terminal", "../assets/sprites/small-terminal.png");
     loadSprite("orb", "../assets/sprites/orbby.png");
+    loadSprite("clouds", "../assets/sprites/clouds.png");
+    loadSprite("grid", "../assets/sprites/grid.png");
     loadSound("bipedalMech", "../assets/sounds/bipedalMech.wav");
     loadSound("pickedOrb", "../assets/sounds/pickedOrb.wav");
     loadSound("dies", "../assets/sounds/dies.wav");
+    loadFont("spacy", "../assets/sprites/spacy.png", 32, 32);
+
+    loadSprite("planet", "../assets/sprites/planets.png", {
+        sliceX: 50,
+    });
+
 
     loadSprite("impact", "../assets/sprites/wall-impact-blast.png", {
         sliceX: 2,
