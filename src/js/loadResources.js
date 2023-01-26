@@ -17,6 +17,7 @@ export const loadResources = () => {
     loadSound("bipedalMech", "../assets/sounds/bipedalMech.wav");
     loadSound("pickedOrb", "../assets/sounds/pickedOrb.wav");
     loadSound("dies", "../assets/sounds/dies.wav");
+    loadSound("menuMusic", "../assets/sounds/interstellarOdyssey.ogg");
     loadFont("spacy", "../assets/sprites/spacy.png", 32, 32);
 
     loadSprite("planet", "../assets/sprites/planets.png", {

@@ -25,6 +25,7 @@ const {
 
 
 export default () => {
+
     layers([
         "bg",
         "game",
