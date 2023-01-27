@@ -43,14 +43,7 @@ export default () => {
     const tranger = ranger()
 
     add([
-        sprite("background", { width: width(), height: height(), tiled: true }),
-        layer("bg"),
-        pos(0, 0),
-        fixed(true),
-    ])
-
-    add([
-        sprite("fullbg", { width: width(), height: height() }),
+        sprite("labbg", { width: width(), height: height() }),
         layer("bg0"),
         pos(0, 0),
         fixed(true),

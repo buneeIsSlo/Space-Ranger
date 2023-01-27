@@ -42,7 +42,7 @@ export default () => {
     ])
 
     add([
-        sprite("background", { width: width(), height: height(), tiled: true }),
+        sprite("starsbg", { width: width(), height: height(), tiled: true }),
         layer("bg"),
         pos(0, 0),
         fixed(true),

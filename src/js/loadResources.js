@@ -1,6 +1,6 @@
 export const loadResources = () => {
-    loadSprite("background", "../assets/sprites/parallax-space-stars.png");
-    loadSprite("fullbg", "../assets/sprites/back.png");
+    loadSprite("starsbg", "../assets/sprites/parallax-space-stars.png");
+    loadSprite("labbg", "../assets/sprites/back.png");
     loadSprite("pillarTile", "../assets/sprites/pillar.png");
     loadSprite("plainTile", "../assets/sprites/plain.png");
     loadSprite("lockedTile", "../assets/sprites/pass.png");
