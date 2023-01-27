@@ -1,7 +1,7 @@
 import k from "../kaboom";
 import { addTiles } from "../levels";
 import { addCrawler, addStinger } from "../entities/enemies";
-import { ranger } from "../entities/ranger";
+import { addRanger } from "../entities/ranger";
 import { addServers, addTerminal, addOrb } from "../entities/props";
 import { addBackdrop } from "../ui/backDrop";
 
@@ -40,7 +40,7 @@ export default () => {
 
     gravity(2400);
 
-    const tranger = ranger();
+    const ranger = addRanger();
 
     add([
         sprite("labbg", { width: width(), height: height() }),
@@ -82,7 +82,7 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addCrawler(vec2(tilePosX, h), tranger);
+                addCrawler(vec2(tilePosX, h), ranger);
             }
         },
         {
@@ -101,8 +101,8 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addCrawler(vec2(tilePosX, h / 2), tranger);
-                addStinger(vec2(tilePosX + (w / 2) + 100, h / 4), tranger);
+                addCrawler(vec2(tilePosX, h / 2), ranger);
+                addStinger(vec2(tilePosX + (w / 2) + 100, h / 4), ranger);
             }
         },
         {
@@ -125,7 +125,7 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addCrawler(vec2(tilePosX + w / 2, h / 2), tranger);
+                addCrawler(vec2(tilePosX + w / 2, h / 2), ranger);
                 addServers(vec2(tilePosX, h / 2));
 
             }
@@ -139,7 +139,7 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addCrawler(vec2(tilePosX, h / 2), tranger);
+                addCrawler(vec2(tilePosX, h / 2), ranger);
 
             }
         },
@@ -149,7 +149,7 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addCrawler(vec2(tilePosX + w, h / 2), tranger);
+                addCrawler(vec2(tilePosX + w, h / 2), ranger);
                 addOrb(vec2(tilePosX + (w / 2), h / 2));
             }
         },
@@ -159,8 +159,8 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addStinger(vec2(tilePosX + w, h / 4), tranger);
-                addCrawler(vec2(tilePosX + w, h), tranger);
+                addStinger(vec2(tilePosX + w, h / 4), ranger);
+                addCrawler(vec2(tilePosX + w, h), ranger);
                 addOrb(vec2(tilePosX + (w - 200), h / 2));
             }
         },
@@ -196,8 +196,8 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addStinger(vec2(tilePosX, h / 4), tranger);
-                addStinger(vec2(tilePosX + (w / 2) + 100, h / 4), tranger);
+                addStinger(vec2(tilePosX, h / 4), ranger);
+                addStinger(vec2(tilePosX + (w / 2) + 100, h / 4), ranger);
 
                 addOrb(vec2(tilePosX, h - 40));
                 addOrb(vec2(tilePosX + (w / 2), h - 40));
@@ -210,7 +210,7 @@ export default () => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
-                addStinger(vec2(tilePosX + w, h / 4), tranger);
+                addStinger(vec2(tilePosX + w, h / 4), ranger);
                 addOrb(vec2(tilePosX + (w / 2), h / 2));
                 addOrb(vec2(tilePosX + w, h - 40));
             }

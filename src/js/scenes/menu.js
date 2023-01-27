@@ -96,7 +96,7 @@ export default () => {
     });
 
     add([
-        sprite("tranger", { anim: "run", animSpeed: 0.8, }),
+        sprite("ranger", { anim: "run", animSpeed: 0.8, }),
         layer("game"),
         pos(center().x, height() - 40),
         body(),

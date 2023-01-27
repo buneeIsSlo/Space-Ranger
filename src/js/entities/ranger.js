@@ -27,13 +27,13 @@ const {
     fixed
 } = k
 
-export const ranger = () => {
+export const addRanger = () => {
     const PLAYER_SPEED = 280;
     const BULLET_SPEED = 420;
     playLabMusic();
 
-    let tranger = add([
-        sprite("tranger", { anim: "idle" }),
+    let ranger = add([
+        sprite("ranger", { anim: "idle" }),
         layer("game"),
         pos(0, 0),
         body(),
@@ -49,28 +49,28 @@ export const ranger = () => {
             isDead: false,
 
             offsetArea() {
-                if (tranger.isFlipped) {
-                    tranger.area.offset = vec2(40, 0);
+                if (ranger.isFlipped) {
+                    ranger.area.offset = vec2(40, 0);
                 }
                 else {
-                    tranger.area.offset = vec2(0);
+                    ranger.area.offset = vec2(0);
                 }
             },
 
             areaHeightTo(val) {
-                tranger.area.height = val;
-                if (!tranger.isGrounded())
-                    tranger.area.offset.y = -25;
+                ranger.area.height = val;
+                if (!ranger.isGrounded())
+                    ranger.area.offset.y = -25;
                 else
-                    tranger.area.offset.y = 0;
+                    ranger.area.offset.y = 0;
             },
 
             die() {
-                if (tranger.isDead) return;
+                if (ranger.isDead) return;
 
-                tranger.origin = "topleft";
-                tranger.isDead = true;
-                tranger.play("die");
+                ranger.origin = "topleft";
+                ranger.isDead = true;
+                ranger.play("die");
                 shake();
 
                 addBackdrop(1, 0, 0.5);
@@ -81,21 +81,21 @@ export const ranger = () => {
 
                 onKeyPress(",", () => {
                     destroyAll("endScr");
-                    tranger.paused = false;
+                    ranger.paused = false;
                 });
             }
         }
     ]);
 
-    console.log(tranger);
-    playerMovement(tranger);
+    console.log(ranger);
+    playerMovement(ranger);
     let orbCount = addOrbCount();
 
     onKeyPress("enter", () => {
-        if (!tranger.isDead);
-        spawnBullet(tranger.pos);
+        if (!ranger.isDead);
+        spawnBullet(ranger.pos);
         // destroyAll("bot");
-        tranger.isDead = false;
+        ranger.isDead = false;
     })
 
     function playerMovement(player) {
@@ -258,11 +258,11 @@ export const ranger = () => {
             pos(p.x + 40, p.y - 30),
             origin("center"),
             color(127, 127, 255),
-            move(tranger.isFlipped ? LEFT : RIGHT, BULLET_SPEED),
+            move(ranger.isFlipped ? LEFT : RIGHT, BULLET_SPEED),
             cleanup(),
             "bullet",
         ]);
     }
 
-    return tranger;
+    return ranger;
 }

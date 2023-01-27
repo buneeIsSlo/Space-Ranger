@@ -25,14 +25,14 @@ const {
 
 import { chase, patrol } from "../components";
 
-export const addCrawler = (p, tranger) => {
+export const addCrawler = (p, ranger) => {
     const crawler = add([
         sprite("crawly", { anim: "idle" }),
         pos(p),
         area({ width: 35, height: 30 }),
         body(),
         origin("bot"),
-        chase(tranger),
+        chase(ranger),
         scale(1.3),
         state("idle", ["idle", "chase"]),
         "bot",
@@ -53,7 +53,7 @@ export const addCrawler = (p, tranger) => {
     })
 }
 
-export const addStinger = (p, tranger) => {
+export const addStinger = (p, ranger) => {
     const stinger = add([
         sprite("stinger", { anim: "fly" }),
         pos(p),
@@ -67,12 +67,12 @@ export const addStinger = (p, tranger) => {
     let canShoot = true;
 
     stinger.onUpdate(async () => {
-        if (tranger.pos.dist(stinger.pos) <= 300) {
-            if (tranger.pos.x > stinger.pos.x) stinger.flipX(true);
+        if (ranger.pos.dist(stinger.pos) <= 300) {
+            if (ranger.pos.x > stinger.pos.x) stinger.flipX(true);
             else stinger.flipX(false);
 
-            if (canShoot && !tranger.isDead) {
-                const dir = tranger.pos.sub(stinger.pos).unit();
+            if (canShoot && !ranger.isDead) {
+                const dir = ranger.pos.sub(stinger.pos).unit();
 
                 dir.x += 0.1; // to direct the stone more towards the center of the player 
 

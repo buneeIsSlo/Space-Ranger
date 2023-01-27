@@ -63,7 +63,7 @@ export const loadResources = () => {
             }
         }
     })
-    loadSprite("tranger", "../assets/sprites/ranger64.png", {
+    loadSprite("ranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,
         anims: {
             idle: {

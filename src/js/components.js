@@ -3,7 +3,7 @@ export function patrol(distance = 100, speed = 50, dir = 1) {
         id: "patrol",
         require: ["pos", "area",],
         // startingPos: vec2(0, 0),
-        tranger: get("tranger")[0],
+        ranger: get("ranger")[0],
         add() {
             this.startingPos = this.pos;
             this.on("collide", (obj, side) => {
