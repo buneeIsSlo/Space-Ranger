@@ -173,8 +173,7 @@ export const ranger = () => {
 
         player.onUpdate(() => {
             let currCam = camPos();
-            // camPos(player.pos.x, currCam.y);
-            const from = camPos().x
+            const from = currCam.x
             const to = Math.max(player.pos.x + player.width / 2 + (player.isFlipped ? -60 : 60))
             const dir = vec2(from + Math.sign(to - from) * Math.min(Math.abs(to - from), 1.5 * PLAYER_SPEED * dt()), currCam.y);
             camPos(dir.x < 200 ? 200 : dir.x, dir.y);
@@ -182,8 +181,16 @@ export const ranger = () => {
         });
 
         player.onStateEnter("jump", () => {
+            let i = 0;
+
             let checkForLanding = loop(0.1, () => {
-                console.log("in loop");
+
+                /* 
+                    Due to frame hitches this loop may wind up running infinitely.
+                    The 2 lines of code below will prevent that from happening.
+                */
+                i += 1;
+                if (i >= 20) checkForLanding();
 
                 if (player.isGrounded()) {
                     if (player.isDead) {
@@ -191,14 +198,12 @@ export const ranger = () => {
                         return;
                     }
 
-                    console.log("grounding");
                     player.offsetArea();
                     player.areaHeightTo(35);
 
                     if (isKeyDown("right") || isKeyDown("left")) {
                         player.play("run");
                         player.enterState("run");
-                        console.log("exited loop");
                         checkForLanding();
                     }
 
