@@ -1,5 +1,7 @@
 import k from "../kaboom";
 import { addBackdrop } from "../ui/backDrop";
+import { stopMenuMusic } from "../music";
+
 
 const {
     add,
@@ -24,13 +26,7 @@ const {
     fixed
 } = k
 
-let music;
-music = play("menuMusic", { seek: 16, volume: 0.1 });
-
-
 const introContext = () => {
-    if (!music.isStopped)
-        music.play();
 
     add([
         sprite("grid", { width: width(), height: height() }),
@@ -118,7 +114,7 @@ const introContext = () => {
     onClick("start", () => {
         addBackdrop(3, 0, 1);
         wait(1, () => {
-            music.stop();
+            stopMenuMusic();
             go("lab")
         })
     });
@@ -159,7 +155,7 @@ function showControls() {
                         origin: "center",
                         font: "sink",
                         width: width() - 180,
-                        color: YELLOW,
+                        color: rgb(255, 60, 106),
                         pos: vec2(center().x, center().y - 40),
                     });
                     popTransform();
@@ -187,7 +183,6 @@ function showControls() {
     });
 
     onClick("back", (e) => {
-        music.stop();
         go("introContext");
     });
 

@@ -1,4 +1,5 @@
 import k from "../kaboom";
+import { playLabMusic, stopLabMusic } from "../music";
 import { addBackdrop } from "../ui/backDrop";
 import { showEndScreen } from "../ui/endScreen";
 import { addOrbCount } from "../ui/orbs";
@@ -29,8 +30,7 @@ const {
 export const ranger = () => {
     const PLAYER_SPEED = 280;
     const BULLET_SPEED = 420;
-    let music = play("bipedalMech", { loop: true });
-    volume(0.5);
+    playLabMusic();
 
     let tranger = add([
         sprite("tranger", { anim: "idle" }),
@@ -76,7 +76,7 @@ export const ranger = () => {
                 addBackdrop(1, 0, 0.5);
                 showEndScreen();
 
-                music.stop();
+                stopLabMusic();
                 play("dies", { volume: 0.7 });
 
                 onKeyPress(",", () => {
@@ -172,11 +172,6 @@ export const ranger = () => {
         });
 
         player.onUpdate(() => {
-            // camPos(player.pos);
-            if (player.pos.y > height() + 40) {
-                // player.die();
-            }
-
             let currCam = camPos();
             // camPos(player.pos.x, currCam.y);
             const from = camPos().x

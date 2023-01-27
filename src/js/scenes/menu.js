@@ -1,4 +1,5 @@
 import k from "../kaboom";
+import { playMenuMusic } from "../music";
 
 const {
     add,
@@ -104,6 +105,12 @@ export default () => {
         area({ width: 25, height: 35, offset: vec2(0) }),
     ])
 
-    onKeyPress("space", () => go("introContext"));
-    onClick("start", () => go("introContext"));
+    onKeyPress("space", () => {
+        playMenuMusic();
+        go("introContext");
+    });
+    onClick("start", () => {
+        playMenuMusic();
+        go("introContext");
+    });
 }

@@ -30,6 +30,8 @@ const {
     fixed
 } = k
 
+volume(0.5);
+
 scene("menu", menu);
 scene("introContext", introContext);
 scene("lab", lab);
