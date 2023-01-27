@@ -37,4 +37,4 @@ scene("introContext", introContext);
 scene("lab", lab);
 scene("end", end);
 
-go("menu");
+go("lab");

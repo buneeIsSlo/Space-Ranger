@@ -40,7 +40,7 @@ export default () => {
 
     gravity(2400);
 
-    const tranger = ranger()
+    const tranger = ranger();
 
     add([
         sprite("labbg", { width: width(), height: height() }),
@@ -102,8 +102,7 @@ export default () => {
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
                 addCrawler(vec2(tilePosX, h / 2), tranger);
-                addStinger(vec2(tilePosX + (w / 2), h / 4), tranger);
-
+                addStinger(vec2(tilePosX + (w / 2) + 100, h / 4), tranger);
             }
         },
         {
@@ -198,9 +197,11 @@ export default () => {
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
                 addStinger(vec2(tilePosX, h / 4), tranger);
+                addStinger(vec2(tilePosX + (w / 2) + 100, h / 4), tranger);
+
                 addOrb(vec2(tilePosX, h - 40));
                 addOrb(vec2(tilePosX + (w / 2), h - 40));
-                addOrb(vec2(tilePosX + w, h - 40));
+                addOrb(vec2(tilePosX + w, h / 2));
             }
         },
         {
@@ -210,7 +211,7 @@ export default () => {
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
                 addStinger(vec2(tilePosX + w, h / 4), tranger);
-                addOrb(vec2(tilePosX + (w / 2), h - 40));
+                addOrb(vec2(tilePosX + (w / 2), h / 2));
                 addOrb(vec2(tilePosX + w, h - 40));
             }
         },
