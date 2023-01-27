@@ -9,22 +9,17 @@ export default () => {
     const {
         add,
         pos,
-        text,
-        color,
         width,
         height,
         origin,
         go,
-        play,
         wait,
-        time,
         opacity,
         sprite,
-        outline,
         layer,
         layers,
         fixed
-    } = k
+    } = k;
 
     // debug.inspect = true;
     // debug.timeScale = 0.2;

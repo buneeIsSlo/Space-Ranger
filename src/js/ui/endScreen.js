@@ -6,23 +6,14 @@ const {
     pos,
     text,
     color,
-    width,
     height,
     origin,
     go,
-    play,
     wait,
-    action,
-    time,
-    lerp,
     opacity,
-    dt,
-    sprite,
-    outline,
     layer,
-    layers,
     fixed
-} = k
+} = k;
 
 export async function showEndScreen() {
     await wait(0.5, () => {

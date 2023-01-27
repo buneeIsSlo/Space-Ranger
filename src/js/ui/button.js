@@ -5,23 +5,12 @@ const {
     pos,
     text,
     color,
-    width,
-    height,
     origin,
-    go,
-    play,
-    wait,
-    action,
-    time,
-    lerp,
     opacity,
-    dt,
-    sprite,
     outline,
     layer,
-    layers,
     fixed
-} = k
+} = k;
 
 export function addBtn(t, p, func) {
     const btn = add([

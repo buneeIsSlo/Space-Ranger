@@ -11,24 +11,8 @@ console.log("ohaider");
 loadResources();
 
 const {
-    add,
-    pos,
-    text,
-    color,
-    width,
-    height,
-    origin,
     go,
-    play,
-    wait,
-    time,
-    opacity,
-    sprite,
-    outline,
-    layer,
-    layers,
-    fixed
-} = k
+} = k;
 
 volume(0.5);
 
@@ -37,4 +21,4 @@ scene("introContext", introContext);
 scene("lab", lab);
 scene("end", end);
 
-go("lab");
+go("menu");

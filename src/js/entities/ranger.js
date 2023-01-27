@@ -7,25 +7,13 @@ import { addOrbCount } from "../ui/orbs";
 const {
     add,
     pos,
-    text,
     color,
-    width,
-    height,
     origin,
-    go,
     play,
-    wait,
-    action,
-    time,
-    lerp,
-    opacity,
     dt,
     sprite,
-    outline,
     layer,
-    layers,
-    fixed
-} = k
+} = k;
 
 export const addRanger = () => {
     const PLAYER_SPEED = 280;

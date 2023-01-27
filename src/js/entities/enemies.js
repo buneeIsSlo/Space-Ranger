@@ -3,27 +3,12 @@ import k from "../kaboom";
 const {
     add,
     pos,
-    text,
-    color,
-    width,
-    height,
     origin,
-    go,
-    play,
     wait,
-    action,
-    time,
-    lerp,
-    opacity,
-    dt,
     sprite,
-    outline,
-    layer,
-    layers,
-    fixed
-} = k
+} = k;
 
-import { chase, patrol } from "../components";
+import { chase } from "../components";
 
 export const addCrawler = (p, ranger) => {
     const crawler = add([

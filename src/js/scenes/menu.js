@@ -10,19 +10,11 @@ const {
     height,
     origin,
     go,
-    play,
-    wait,
-    action,
-    time,
-    lerp,
-    opacity,
-    dt,
     sprite,
-    outline,
     layer,
     layers,
     fixed
-} = k
+} = k;
 
 
 export default () => {
