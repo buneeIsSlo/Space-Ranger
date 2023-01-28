@@ -94,7 +94,5 @@ export const loadResources = () => {
                 speed: 5
             }
         },
-    });
-
-    loadSprite("floor", "../assets/sprites/floor.png");
+    })
 }

@@ -25,7 +25,6 @@ export default () => {
     // debug.timeScale = 0.2;
 
     layers([
-        "bg0",
         "bg",
         "tile",
         "game",
@@ -39,7 +38,7 @@ export default () => {
 
     add([
         sprite("labbg", { width: width(), height: height() }),
-        layer("bg0"),
+        layer("bg"),
         pos(0, 0),
         fixed(true),
     ])
@@ -122,7 +121,6 @@ export default () => {
 
                 addCrawler(vec2(tilePosX + w / 2, h / 2), ranger);
                 addServers(vec2(tilePosX, h / 2));
-
             }
         },
         {
@@ -135,7 +133,6 @@ export default () => {
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
 
                 addCrawler(vec2(tilePosX, h / 2), ranger);
-
             }
         },
         {
@@ -174,7 +171,6 @@ export default () => {
                 addOrb(vec2(orbPosX, orbPosY));
                 addOrb(vec2(orbPosX - 50, orbPosY + 30));
                 addOrb(vec2(orbPosX + 50, orbPosY + 30));
-
             }
         },
         {
