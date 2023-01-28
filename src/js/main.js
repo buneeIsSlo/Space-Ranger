@@ -14,11 +14,11 @@ const {
     go,
 } = k;
 
-volume(0.5);
+volume(0.0);
 
 scene("menu", menu);
 scene("introContext", introContext);
 scene("lab", lab);
 scene("end", end);
 
-go("menu");
+go("lab");

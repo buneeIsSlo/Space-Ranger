@@ -88,9 +88,9 @@ export const addRanger = () => {
 
     function playerMovement(player) {
 
-        onKeyPress("left", () => {
+        onKeyPress(["left", "a"], () => {
 
-            if (isKeyDown("right") || player.isDead) return;
+            if (isKeyDown("right") || isKeyDown("d") || player.isDead) return;
 
             player.isFlipped = true;
             player.offsetArea();
@@ -103,8 +103,8 @@ export const addRanger = () => {
             player.play("run");
         })
 
-        onKeyPress("right", () => {
-            if (isKeyDown("left") || player.isDead) return;
+        onKeyPress(["right", "d"], () => {
+            if (isKeyDown("left") || isKeyDown("a") || player.isDead) return;
 
             player.isFlipped = false;
             player.offsetArea();
@@ -118,17 +118,17 @@ export const addRanger = () => {
             console.log(player.curPlatform());
         })
 
-        onKeyDown("left", () => {
+        onKeyDown(["left", "a"], () => {
             if (player.isDead) return;
             moveLeft(player);
         })
 
-        onKeyDown("right", () => {
+        onKeyDown(["right", "d"], () => {
             if (player.isDead) return;
             moveRight(player);
         })
 
-        onKeyPress("space", () => {
+        onKeyPress(["space", "w", "up"], () => {
             if (!player.isGrounded() || player.isDead) return;
 
             player.play("jump");
@@ -137,7 +137,7 @@ export const addRanger = () => {
             player.areaHeightTo(30);
         });
 
-        onKeyRelease(['left', 'right', 'down', 'up'], () => {
+        onKeyRelease(['left', 'right', "a", "d"], () => {
             if (player.isDead) return;
 
             if (!player.isGrounded() && player.state !== "jump") {
@@ -151,8 +151,11 @@ export const addRanger = () => {
                 && !isKeyDown("right")
                 && !isKeyDown("up")
                 && !isKeyDown("down")
+                && !isKeyDown("a")
+                && !isKeyDown("d")
                 && player.isGrounded()
             ) {
+                player.offsetArea();
                 console.log(player.state);
                 player.enterState("idle");
                 player.play("idle");
@@ -189,7 +192,11 @@ export const addRanger = () => {
                     player.offsetArea();
                     player.areaHeightTo(35);
 
-                    if (isKeyDown("right") || isKeyDown("left")) {
+                    if (isKeyDown("right")
+                        || isKeyDown("left")
+                        || isKeyDown("d")
+                        || isKeyDown("a")
+                    ) {
                         player.play("run");
                         player.enterState("run");
                         checkForLanding();
@@ -221,7 +228,7 @@ export const addRanger = () => {
     }
 
     function moveLeft(player) {
-        if (isKeyDown("right")) return;
+        if (isKeyDown("right") || isKeyDown("d")) return;
 
 
         player.flipX(true);
@@ -231,7 +238,7 @@ export const addRanger = () => {
     }
 
     function moveRight(player) {
-        if (isKeyDown("left")) return;
+        if (isKeyDown("left") || isKeyDown("a")) return;
 
         player.flipX(false);
         player.isFlipped = false;
