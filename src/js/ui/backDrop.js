@@ -34,7 +34,7 @@ export function addBackdrop(time, from, to) {
             shade.opacity = lerp(from, to, timer);
             // shade.opacity = map(timer, 0, time, from, to);
         }
-    })
+    });
 
 }
 

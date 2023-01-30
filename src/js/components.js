@@ -46,17 +46,17 @@ export function chase(target) {
                 if (this.state !== "idle") this.enterState("idle");
             }
         }
-    }
+    };
 }
 
 export function hover() {
-    let timer = 0
+    let timer = 0;
     return {
         id: "hover",
         require: ["pos"],
         update() {
-            timer += dt()
-            this.pos = vec2(this.pos.x, wave(this.pos.y - 0.2, this.pos.y + 0.2, timer * 4))
+            timer += dt();
+            this.pos = vec2(this.pos.x, wave(this.pos.y - 0.2, this.pos.y + 0.2, timer * 4));
         },
-    }
+    };
 }

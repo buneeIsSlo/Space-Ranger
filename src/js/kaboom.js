@@ -8,6 +8,6 @@ const k = kaboom({
     canvas: document.getElementById("game"),
     scale: 2,
 });
-canvas.focus()
+canvas.focus();
 
-export default k
+export default k;

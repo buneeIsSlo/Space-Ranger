@@ -11,7 +11,7 @@ const {
 } = k;
 
 export const addOrbCount = () => {
-    const orb = add([
+    add([
         sprite("orb"),
         pos(25, 25),
         area({ width: 100, height: 100, offset: vec2(0, -2) }),
@@ -21,12 +21,12 @@ export const addOrbCount = () => {
         fixed(),
     ]);
 
-    let x = add([
+    add([
         text("x", { size: 8, font: "sink" }),
         pos(38, 18),
         layer("ui"),
         fixed(),
-        "orbCound"
+        "orbCount"
     ]);
 
     let count = add([
@@ -34,8 +34,8 @@ export const addOrbCount = () => {
         pos(50, 18),
         layer("ui"),
         fixed(),
-        "orbCound"
+        "orbCount"
     ]);
 
     return count;
-}
+};

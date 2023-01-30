@@ -28,7 +28,7 @@ export function addBtn(t, p, func) {
         "outty"
     ]);
 
-    const txt = add([
+    add([
         text("RESTART LEVEL", { size: 8, font: "sink", letterSpacing: 2, }),
         pos(p),
         area(),
@@ -53,5 +53,5 @@ export function addBtn(t, p, func) {
             btn.color = WHITE;
             btn.opacity = 0;
         }
-    })
+    });
 }

@@ -1,45 +1,7 @@
-
-
-export const LEVEL1 = [
-    "                                                                                             ",
-    "                                                                                             ",
-    "                                                                                             ",
-    "                                       ?                                                     ",
-    "                                                                                             ",
-    "                                   -?-                                                       ",
-    "                                                                                             ",
-    "      -?-b-                  -?-                                                             ",
-    "                                                                                             ",
-    "                                                                                             ",
-    "                                                                                             ",
-    "                                                                                             ",
-    "       _                                            _                                        ",
-    "       |                                            |          E    E            H           ",
-    "================     ========================================================================",
-    "================     ========================================================================",
-];
-
-export const LEVEL = [
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '                                                                ',
-    '               ===               =                              ',
-    '          >                                       <             ',
-    '================================================================',
-]
-
-
 export const addTiles = (tiles) => {
     let prevWidths = 0;
 
-    tiles.forEach((tile, i) => {
+    tiles.forEach((tile) => {
         const back = add([
             sprite(tile.name, { height: height() }),
             layer("tile"),
@@ -55,7 +17,7 @@ export const addTiles = (tiles) => {
             solid(),
             opacity(0),
             "killStone",
-        ])
+        ]);
 
         prevWidths += w;
 
@@ -63,4 +25,4 @@ export const addTiles = (tiles) => {
             tile.onAdded(back);
         }
     });
-}
+};

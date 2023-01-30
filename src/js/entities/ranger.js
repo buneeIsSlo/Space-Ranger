@@ -76,8 +76,8 @@ export const addRanger = () => {
 
     ranger.onUpdate(() => {
         let currCam = camPos();
-        const from = currCam.x
-        const to = Math.max(ranger.pos.x + ranger.width / 2 + (ranger.isFlipped ? -60 : 60))
+        const from = currCam.x;
+        const to = Math.max(ranger.pos.x + ranger.width / 2 + (ranger.isFlipped ? -60 : 60));
         const dir = vec2(from + Math.sign(to - from) * Math.min(Math.abs(to - from), 1.5 * PLAYER_SPEED * dt()), currCam.y);
         camPos(dir.x < 200 ? 200 : dir.x, dir.y);
         // camScale(0.5);
@@ -102,10 +102,10 @@ export const addRanger = () => {
         spawnBullet(ranger.pos, ranger.isFlipped);
         // destroyAll("bot");
         ranger.isDead = false;
-    })
+    });
 
     return ranger;
-}
+};
 
 function playerMovement(player) {
 
@@ -122,7 +122,7 @@ function playerMovement(player) {
         }
 
         player.play("run");
-    })
+    });
 
     onKeyPress(["right", "d"], () => {
         if (isKeyDown("left") || isKeyDown("a") || player.isDead) return;
@@ -137,17 +137,17 @@ function playerMovement(player) {
 
         player.play("run");
         console.log(player.curPlatform());
-    })
+    });
 
     onKeyDown(["left", "a"], () => {
         if (player.isDead) return;
         moveLeft(player);
-    })
+    });
 
     onKeyDown(["right", "d"], () => {
         if (player.isDead) return;
         moveRight(player);
-    })
+    });
 
     onKeyPress(["space", "w", "up"], () => {
         if (!player.isGrounded() || player.isDead) return;
@@ -158,7 +158,7 @@ function playerMovement(player) {
         player.areaHeightTo(30);
     });
 
-    onKeyRelease(['left', 'right', "a", "d"], () => {
+    onKeyRelease(["left", "right", "a", "d"], () => {
         if (player.isDead) return;
 
         if (!player.isGrounded() && player.state !== "jump") {
@@ -220,7 +220,7 @@ function playerMovement(player) {
                     checkForLanding();
                 }
             }
-        })
+        });
     });
 
 }
@@ -245,7 +245,7 @@ function moveRight(player) {
 }
 
 function spawnBullet(p, isPlayerFlipped) {
-    const bullet = add([
+    add([
         rect(18, 10),
         area(),
         pos(p.x + 40, p.y - 30),

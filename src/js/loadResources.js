@@ -51,7 +51,7 @@ export const loadResources = () => {
                 loop: true,
             }
         }
-    })
+    });
     loadSprite("stinger", "../assets/sprites/flyer.png", {
         sliceX: 8,
         anims: {
@@ -62,7 +62,7 @@ export const loadResources = () => {
                 loop: true,
             }
         }
-    })
+    });
     loadSprite("ranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,
         anims: {
@@ -94,5 +94,5 @@ export const loadResources = () => {
                 speed: 5
             }
         },
-    })
-}
+    });
+};

@@ -11,14 +11,16 @@ console.log("ohaider");
 loadResources();
 
 const {
+    volume,
+    scene,
     go,
 } = k;
 
-volume(0.0);
+volume(0.5);
 
 scene("menu", menu);
 scene("introContext", introContext);
 scene("lab", lab);
 scene("end", end);
 
-go("lab");
+go("menu");

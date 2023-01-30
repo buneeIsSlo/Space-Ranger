@@ -17,7 +17,7 @@ const {
 
 export async function showEndScreen() {
     await wait(0.5, () => {
-        let fail = add([
+        add([
             text("Mission Failed", { size: 18, font: "sink", letterSpacing: 2 }),
             pos(center().x, center().y - 40),
             color(RED),
@@ -33,10 +33,10 @@ export async function showEndScreen() {
 
         for (let i = 0; i < 10; i++) {
             setTimeout(() => {
-                every('endUI', (e) => {
+                every("endUI", (e) => {
                     e.opacity += 0.1;
                 });
             }, i * 50);
-        };
+        }
     });
 }

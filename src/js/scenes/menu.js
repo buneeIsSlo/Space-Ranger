@@ -31,14 +31,14 @@ export default () => {
         layer("bg"),
         pos(0, 0),
         fixed(true),
-    ])
+    ]);
 
     add([
         sprite("starsbg", { width: width(), height: height(), tiled: true }),
         layer("bg"),
         pos(0, 0),
         fixed(true),
-    ])
+    ]);
 
     add([
         text("SPACE", { size: 32, font: "spacy", align: "center", letterSpacing: 4 }),
@@ -46,7 +46,7 @@ export default () => {
         color(YELLOW),
         origin("center"),
         layer("ui"),
-    ])
+    ]);
 
     add([
         text("RANGER", { size: 32, font: "spacy", align: "center", letterSpacing: 4 }),
@@ -54,7 +54,7 @@ export default () => {
         color(YELLOW),
         origin("center"),
         layer("ui"),
-    ])
+    ]);
 
 
     let startText = add([
@@ -65,7 +65,7 @@ export default () => {
         origin("center"),
         layer("ui"),
         "start"
-    ])
+    ]);
 
     loop(0.8, () => {
         startText.opacity = startText.opacity == 1 ? 0 : 1;
@@ -80,7 +80,7 @@ export default () => {
         rotate(360),
         origin("center"),
         layer("game"),
-    ])
+    ]);
 
     planet.onUpdate(() => {
         if (planet.angle <= 0) planet.angle = 360;
@@ -95,7 +95,7 @@ export default () => {
         scale(1.3),
         origin("center"),
         area({ width: 25, height: 35, offset: vec2(0) }),
-    ])
+    ]);
 
     onKeyPress("space", () => {
         playMenuMusic();
@@ -105,4 +105,4 @@ export default () => {
         playMenuMusic();
         go("introContext");
     });
-}
+};

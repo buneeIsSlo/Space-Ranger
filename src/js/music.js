@@ -22,4 +22,4 @@ export {
     stopMenuMusic,
     playLabMusic,
     stopLabMusic,
-}
+};

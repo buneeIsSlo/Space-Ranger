@@ -26,7 +26,7 @@ const introContext = () => {
         layer("bg"),
         pos(0, 0),
         fixed(true),
-    ])
+    ]);
 
     add([
         rect(width(), height()),
@@ -34,7 +34,7 @@ const introContext = () => {
         color(0, 0, 0),
         opacity(0.6),
         fixed(),
-    ])
+    ]);
 
     let context = [
         "Aliens have stormed the base in search of the super rare space orbs",
@@ -70,7 +70,7 @@ const introContext = () => {
         origin("center"),
         color(WHITE),
         "controls",
-    ])
+    ]);
 
     onUpdate("controls", (e) => {
         if (e.isHovering()) {
@@ -79,12 +79,12 @@ const introContext = () => {
         else {
             e.textSize = 10;
         }
-    })
+    });
 
     onClick("controls", () => {
         scene("controls", showControls);
         go("controls");
-    })
+    });
 
     add([
         text("START MISSION", { font: "sink", size: 10 }),
@@ -93,7 +93,7 @@ const introContext = () => {
         origin("center"),
         color(GREEN),
         "start",
-    ])
+    ]);
 
     onUpdate("start", (e) => {
         if (e.isHovering()) {
@@ -102,16 +102,16 @@ const introContext = () => {
         else {
             e.textSize = 10;
         }
-    })
+    });
 
     onClick("start", () => {
         addBackdrop(3, 0, 1);
         wait(1, () => {
             stopMenuMusic();
-            go("lab")
-        })
+            go("lab");
+        });
     });
-}
+};
 
 
 function showControls() {
@@ -121,7 +121,7 @@ function showControls() {
         layer("bg"),
         pos(0, 0),
         fixed(true),
-    ])
+    ]);
 
     add([
         rect(width(), height()),
@@ -129,7 +129,7 @@ function showControls() {
         color(0, 0, 0),
         opacity(0.6),
         fixed(),
-    ])
+    ]);
 
     let context = [
         "Left Arrow / A  -  move Left",
@@ -164,7 +164,7 @@ function showControls() {
         origin("center"),
         color(WHITE),
         "back",
-    ])
+    ]);
 
     onUpdate("back", (e) => {
         if (e.isHovering()) {
@@ -175,7 +175,7 @@ function showControls() {
         }
     });
 
-    onClick("back", (e) => {
+    onClick("back", () => {
         go("introContext");
     });
 

@@ -35,8 +35,8 @@ export const addCrawler = (p, ranger) => {
 
     crawler.onStateEnter("chase", () => {
         crawler.play("crawl");
-    })
-}
+    });
+};
 
 export const addStinger = (p, ranger) => {
     const stinger = add([
@@ -68,7 +68,7 @@ export const addStinger = (p, ranger) => {
                 await wait(0.8, () => canShoot = true);
             }
         }
-    })
+    });
 
     function addStingerSton() {
         const stone = add([
@@ -84,18 +84,19 @@ export const addStinger = (p, ranger) => {
 
 
         stone.onCollide("killStone", () => {
-            const impact = add([
+            add([
                 sprite("impact", { anim: "hit" }),
                 area({ width: 20 }),
                 pos(stone.pos),
                 origin("center"),
                 rotate(90),
                 lifespan(0.2, { fade: 0.1 }),
+                "impact"
             ]);
 
             destroy(stone);
-        })
+        });
 
         return stone;
     }
-}
+};

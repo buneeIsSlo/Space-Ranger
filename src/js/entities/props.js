@@ -11,29 +11,31 @@ const {
 } = k;
 
 export const addServers = (p) => {
-    const servers = add([
+    add([
         sprite("servers",),
         pos(p),
         area(),
         body(),
         origin("center"),
         scale(1.6),
+        "servers",
         "killStone"
-    ])
-}
+    ]);
+};
 
 export const addTerminal = (p) => {
-    const terminal = add([
+    add([
         sprite("terminal"),
         pos(p),
         origin("center"),
         scale(1.2),
         layer("tile"),
-    ])
-}
+        "termial"
+    ]);
+};
 
 export const addOrb = (p) => {
-    const orb = add([
+    add([
         sprite("orb"),
         pos(p),
         area({ width: 100, height: 100, offset: vec2(0, -2) }),
@@ -44,4 +46,4 @@ export const addOrb = (p) => {
         hover(),
         "orb"
     ]);
-}
+};

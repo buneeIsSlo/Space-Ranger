@@ -41,7 +41,7 @@ export default () => {
         layer("bg"),
         pos(0, 0),
         fixed(true),
-    ])
+    ]);
 
     add([
         rect(100, height()),
@@ -51,9 +51,11 @@ export default () => {
         layer("tile"),
         opacity(0),
         "barricade"
-    ])
+    ]);
 
     addTiles([
+        /* eslint-disable no-unused-vars*/
+
         {
             name: "plainTile",
         },
@@ -104,7 +106,7 @@ export default () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
-                const [orbPosX, orbPosY] = [tilePosX + (w / 2), h / 4]
+                const [orbPosX, orbPosY] = [tilePosX + (w / 2), h / 4];
 
                 addServers(vec2(tilePosX, h / 2));
                 addTerminal(vec2(tilePosX + w / 2, 240));
@@ -164,7 +166,7 @@ export default () => {
             onAdded: (tile) => {
                 const [w, h] = [tile.width, tile.height];
                 const [tilePosX, tilePosY] = [tile.pos.x, tile.pos.y];
-                const [orbPosX, orbPosY] = [tilePosX + (w / 2), h / 4]
+                const [orbPosX, orbPosY] = [tilePosX + (w / 2), h / 4];
 
                 addServers(vec2(tilePosX, h / 2));
                 addTerminal(vec2(tilePosX + w / 2, 240));
@@ -228,6 +230,6 @@ export default () => {
                 });
             }
         }
-    ])
+    ]);
 
-}
+};
