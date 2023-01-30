@@ -136,7 +136,6 @@ function playerMovement(player) {
         }
 
         player.play("run");
-        console.log(player.curPlatform());
     });
 
     onKeyDown(["left", "a"], () => {
@@ -177,7 +176,6 @@ function playerMovement(player) {
             && player.isGrounded()
         ) {
             player.offsetArea();
-            console.log(player.state);
             player.enterState("idle");
             player.play("idle");
         }
