@@ -1,4 +1,4 @@
-import "../sass/main.scss";
+import "../css/main.css";
 import k from "./kaboom";
 import menu from "./scenes/menu";
 import introContext from "./scenes/introContext";
