@@ -1,7 +1,6 @@
 {
   "homepage": "http://buneeisslo.github.io/space-ranger",
   "name": "space-ranger",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
