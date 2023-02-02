@@ -1,42 +1,41 @@
 export const loadResources = () => {
-    loadSprite("starsbg", "sprites/parallax-space-stars.png");
-    loadSprite("labbg", "sprites/back.png");
-    loadSprite("pillarTile", "sprites/pillar.png");
-    loadSprite("plainTile", "sprites/plain.png");
-    loadSprite("lockedTile", "sprites/pass.png");
-    loadSprite("holeTile", "sprites/hole.png");
-    loadSprite("shutterTile", "sprites/shutter.png");
-    loadSprite("exitTile", "sprites/exit.png");
-    loadSprite("block", "sprites/floor.png");
-    loadSprite("stingerStone", "sprites/stingerStone.png");
-    loadSprite("servers", "sprites/server-gabinetes.png");
-    loadSprite("terminal", "sprites/small-terminal.png");
-    loadSprite("orb", "sprites/orbby.png");
-    loadSprite("clouds", "sprites/clouds.png");
-    loadSprite("grid", "sprites/grid.png");
-    loadSound("bipedalMech", "sounds/bipedalMech.wav");
-    loadSound("pickedOrb", "sounds/pickedOrb.wav");
-    loadSound("dies", "sounds/dies.wav");
-    loadSound("menuMusic", "sounds/interstellarOdyssey.ogg");
-    loadFont("spacy", "sprites/spacy.png", 32, 32);
+    loadSprite("starsbg", "../assets/sprites/parallax-space-stars.png");
+    loadSprite("labbg", "../assets/sprites/back.png");
+    loadSprite("pillarTile", "../assets/sprites/pillar.png");
+    loadSprite("plainTile", "../assets/sprites/plain.png");
+    loadSprite("lockedTile", "../assets/sprites/pass.png");
+    loadSprite("holeTile", "../assets/sprites/hole.png");
+    loadSprite("shutterTile", "../assets/sprites/shutter.png");
+    loadSprite("exitTile", "../assets/sprites/exit.png");
+    loadSprite("block", "../assets/sprites/floor.png");
+    loadSprite("stingerStone", "../assets/sprites/stingerStone.png");
+    loadSprite("servers", "../assets/sprites/server-gabinetes.png");
+    loadSprite("terminal", "../assets/sprites/small-terminal.png");
+    loadSprite("orb", "../assets/sprites/orbby.png");
+    loadSprite("clouds", "../assets/sprites/clouds.png");
+    loadSprite("grid", "../assets/sprites/grid.png");
+    loadSound("bipedalMech", "../assets/sounds/bipedalMech.wav");
+    loadSound("pickedOrb", "../assets/sounds/pickedOrb.wav");
+    loadSound("dies", "../assets/sounds/dies.wav");
+    loadSound("menuMusic", "../assets/sounds/interstellarOdyssey.ogg");
+    loadFont("spacy", "../assets/sprites/spacy.png", 32, 32);
 
-    loadSprite("planet", "sprites/planets.png", {
+    loadSprite("planet", "../assets/sprites/planets.png", {
         sliceX: 50,
     });
 
-
-    loadSprite("impact", "sprites/wall-impact-blast.png", {
+    loadSprite("impact", "../assets/sprites/wall-impact-blast.png", {
         sliceX: 2,
         anims: {
             hit: {
                 from: 0,
                 to: 1,
                 loop: true,
-            }
-        }
+            },
+        },
     });
 
-    loadSprite("crawly", "sprites/alien-enemy-walk.png", {
+    loadSprite("crawly", "../assets/sprites/alien-enemy-walk.png", {
         sliceX: 6,
         anims: {
             idle: {
@@ -49,10 +48,10 @@ export const loadResources = () => {
                 to: 5,
                 speed: 10,
                 loop: true,
-            }
-        }
+            },
+        },
     });
-    loadSprite("stinger", "sprites/flyer.png", {
+    loadSprite("stinger", "../assets/sprites/flyer.png", {
         sliceX: 8,
         anims: {
             fly: {
@@ -60,10 +59,10 @@ export const loadResources = () => {
                 to: 7,
                 speed: 15,
                 loop: true,
-            }
-        }
+            },
+        },
     });
-    loadSprite("ranger", "sprites/ranger64.png", {
+    loadSprite("ranger", "../assets/sprites/ranger64.png", {
         sliceX: 27,
         anims: {
             idle: {
@@ -91,8 +90,8 @@ export const loadResources = () => {
             shoot: {
                 from: 25,
                 to: 26,
-                speed: 5
-            }
+                speed: 5,
+            },
         },
     });
 };
