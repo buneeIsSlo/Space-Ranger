@@ -12,9 +12,30 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #000e1b;
+  position: relative;
 }
 
 #game {
   border-radius: 4px;
   outline: 5px solid #ffffe6 !important;
+}
+
+#source-code {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+}
+
+#source-code svg {
+  filter: brightness(60%);
+}
+
+#source-code:hover svg {
+  filter: brightness(100%);
+}
+
+#source-code:focus svg {
+  filter: brightness(100%);
+  outline: 2px dashed white;
+  outline-offset: 4px;
 }
