@@ -2,13 +2,13 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-    root: "./src",
+    root: "src",
     resolve: {
         alias: {
-            "~": resolve(__dirname, "./src"),
+            "~": resolve(__dirname, "src"),
         },
     },
-    base: "/space-ranger/",
+    base: "./",
     build: {
         assetsDir: "",
         outDir: "../dist",
