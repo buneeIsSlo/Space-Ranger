@@ -6,8 +6,6 @@ import lab from "./scenes/lab";
 import end from "./scenes/end";
 import { loadResources } from "./loadResources";
 
-console.log("ohaider");
-
 loadResources();
 
 const {
@@ -24,3 +22,5 @@ scene("lab", lab);
 scene("end", end);
 
 go("menu");
+
+console.log("(\\ /)\n(0_0) Coded this.");
