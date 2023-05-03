@@ -74,7 +74,7 @@ Another significant challenge was ensuring that the game remained balanced in te
 
 ## 💙 Acknowledgements
 
-- When I had doubts or questions about the Kaboom.js library or game development in general, the community members(especially MF#8728) at the Kaboom.js [Discord server]() were exceptionally helpful and quick to assist me.
+- When I had doubts or questions about the Kaboom.js library or game development in general, the community members(especially MF#8728) at the Kaboom.js [Discord server](https://discord.com/invite/aQ6RuQm3TF) were exceptionally helpful and quick to assist me.
 
 <br>
 
@@ -82,9 +82,9 @@ Another significant challenge was ensuring that the game remained balanced in te
 
 <strong>⭐ Leave a star maybe? ⭐</strong><br>
 
-<a href="">Source</a>
-| <a href="" target="_blank">Twitter </a>
-| <a href="" target="_blank">LinkedIn </a>
-| <a href="" target="_blank">Other Projects </a>
+<a href="https://github.com/buneeIsSlo/Space-Ranger">Source</a>
+| <a href="https://twitter.com/slo_bunee" target="_blank">Twitter </a>
+| <a href="https://www.linkedin.com/in/bunee-dev/" target="_blank">LinkedIn </a>
+| <a href="https://github.com/buneeIsSlo" target="_blank">Other Projects </a>
 
 </div>
