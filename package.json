@@ -14,7 +14,7 @@
   "devDependencies": {
     "eslint": "8.33.0",
     "gh-pages": "5.0.0",
-    "vite": "4.0.0"
+    "vite": "4.0.5"
   },
   "dependencies": {
     "kaboom": "2000.2.10"
